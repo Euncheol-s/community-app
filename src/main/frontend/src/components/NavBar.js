@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import College from "./College";
+import Notices from "./Notices";
 
 function NavBar() {
   return (
@@ -52,6 +53,21 @@ function NavBar() {
                 </Link>
                 <div className="collapse" id="introduction">
                   <College />
+                </div>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link fs-3"
+                  data-bs-toggle="collapse"
+                  role="button"
+                  aria-expanded="false"
+                  aria-controls="notice"
+                  to="#notice"
+                >
+                  Notices
+                </Link>
+                <div className="collapse" id="notice">
+                  <Notices />
                 </div>
               </li>
             </ul>
