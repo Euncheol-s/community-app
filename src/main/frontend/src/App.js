@@ -1,26 +1,40 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App () {
-    const [message, setMessage] = useState("");
-    useEffect(() => {
-        fetch('/api/hello')
-            .then(response => response.text())
-            .then(message => {
-                setMessage(message);
-            });
-    },[])
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <h1 className="App-title">{message}</h1>
-            </header>
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
-        </div>
-    )
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+import LogIn from "./routes/LogIn";
+import SignUp from "./routes/SignUp";
+import Write from "./routes/Write";
+import Department from "./routes/Department";
+import Major from "./routes/Major";
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/major">
+          <Major />
+        </Route>
+        <Route path="/department">
+          <Department />
+        </Route>
+        <Route path="/write">
+          <Write />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/login">
+          <LogIn />
+        </Route>
+        <Route path="/detail">
+          <Detail />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 export default App;
