@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("/api/hello")
+      .get("/api/main")
       .then((response) => setHello(response.data))
       .catch((error) => console.log(error));
   }, []);
