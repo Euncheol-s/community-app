@@ -6,7 +6,7 @@ function Notices() {
     <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
       {college.map((c) => (
         <li key={c} className="nav-item mb-1 ps-4">
-          <Link className="nav-link anchor" to={c}>
+          <Link className="nav-link anchor fs-5" to={c}>
             {c}
           </Link>
         </li>

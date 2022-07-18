@@ -6,6 +6,7 @@ import Home from "./routes/Home";
 import Department from "./routes/Department";
 import Major from "./routes/Major";
 import Board from "./routes/Board";
+import Profile from "./routes/Profile";
 
 function App() {
   const [hello, setHello] = useState("");
@@ -20,10 +21,13 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/board">
+        <Route path="/profile">
+          <Profile />
+        </Route>
+        <Route path="/board/:id">
           <Board />
         </Route>
-        <Route path="/major">
+        <Route path="/major/:id">
           <Major />
         </Route>
         <Route path="/department">

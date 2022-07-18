@@ -12,7 +12,7 @@ function College() {
       {college.map((c) => (
         <li key={c[0]} className="nav-item mb-1 ps-4">
           <Link
-            className="nav-link anchor"
+            className="nav-link anchor fs-5"
             data-bs-toggle="collapse"
             aria-expanded="false"
             role="button"
