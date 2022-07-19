@@ -13,9 +13,9 @@ import javax.persistence.Id;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Getter
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue

@@ -6,22 +6,19 @@ import com.example.RaOn_Community.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "https://localhost:3000")
+@RequestMapping("/api/main")
 public class mainPageController {
     @Autowired
     private PostRepository pr;
-    @GetMapping("/api/main")
-    public String index(){
-        return "main";
-    }
-    @GetMapping("/api/main/major/software/new")
-    public String software(Model model){
-        List<Post> entityPost=pr.findAll();
+    @GetMapping("/major/board/1/{id}")
+    public String freeBoard(@PathVariable Integer id, Model model){
+        Post entityPost=pr.findById(id).orElse(null);
         model.addAttribute("PostList", entityPost);
         return "";
     }
