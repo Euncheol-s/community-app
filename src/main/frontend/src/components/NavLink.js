@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 function NavLink() {
   return (
-    <ul class="nav container-md px-4">
-      <Link class="navbar-brand me-5" to="/">
+    <ul className="nav container-md px-4">
+      <Link className="navbar-brand me-5" to="/">
         Hallym Community App
       </Link>
-      <li class="nav-item dropdown me-4">
+      <li className="nav-item dropdown me-4">
         <Link
-          class="nav-link dropdown-toggle"
+          className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
           to="#"
           role="button"
@@ -16,35 +16,35 @@ function NavLink() {
         >
           전공 설명
         </Link>
-        <ul class="dropdown-menu">
+        <ul className="dropdown-menu">
           <li>
-            <Link class="dropdown-item" to="/major/1">
+            <Link className="dropdown-item" to="/major/1">
               소프트웨어학부
             </Link>
           </li>
           <li>
-            <Link class="dropdown-item" to="/major/2">
+            <Link className="dropdown-item" to="/major/2">
               인공지능 융합 학부
             </Link>
           </li>
           <li>
-            <Link class="dropdown-item" to="/major/3">
+            <Link className="dropdown-item" to="/major/3">
               데이터 사이언스 학부
             </Link>
           </li>
           <li>
-            <hr class="dropdown-divider" />
+            <hr className="dropdown-divider" />
           </li>
           <li>
-            <Link class="dropdown-item" to="#">
+            <Link className="dropdown-item" to="#">
               Separated link
             </Link>
           </li>
         </ul>
       </li>
-      <li class="nav-item dropdown me-4">
+      <li className="nav-item dropdown me-4">
         <Link
-          class="nav-link dropdown-toggle"
+          className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
           to="#"
           role="button"
@@ -52,35 +52,35 @@ function NavLink() {
         >
           공지사항
         </Link>
-        <ul class="dropdown-menu">
+        <ul className="dropdown-menu">
           <li>
-            <Link class="dropdown-item" to="/notice/1">
+            <Link className="dropdown-item" to="/notice/1">
               소프트웨어학부
             </Link>
           </li>
           <li>
-            <Link class="dropdown-item" to="/notice/2">
+            <Link className="dropdown-item" to="/notice/2">
               인공지능 융합 학부
             </Link>
           </li>
           <li>
-            <Link class="dropdown-item" to="/notice/3">
+            <Link className="dropdown-item" to="/notice/3">
               데이터 사이언스 학부
             </Link>
           </li>
           <li>
-            <hr class="dropdown-divider" />
+            <hr className="dropdown-divider" />
           </li>
           <li>
-            <Link class="dropdown-item" to="#">
+            <Link className="dropdown-item" to="#">
               Separated link
             </Link>
           </li>
         </ul>
       </li>
-      <li class="nav-item dropdown me-4">
+      <li className="nav-item dropdown me-4">
         <Link
-          class="nav-link dropdown-toggle"
+          className="nav-link dropdown-toggle"
           data-bs-toggle="dropdown"
           to="#"
           role="button"
@@ -88,27 +88,27 @@ function NavLink() {
         >
           게시판
         </Link>
-        <ul class="dropdown-menu">
+        <ul className="dropdown-menu">
           <li>
-            <Link class="dropdown-item" to="/board/1">
+            <Link className="dropdown-item" to="/board/1">
               자유 게시판
             </Link>
           </li>
           <li>
-            <Link class="dropdown-item" to="/board/2">
+            <Link className="dropdown-item" to="/board/2">
               정보 게시판
             </Link>
           </li>
           <li>
-            <Link class="dropdown-item" to="/board/3">
+            <Link className="dropdown-item" to="/board/3">
               장터 게시판
             </Link>
           </li>
           <li>
-            <hr class="dropdown-divider" />
+            <hr className="dropdown-divider" />
           </li>
           <li>
-            <Link class="dropdown-item" to="#">
+            <Link className="dropdown-item" to="#">
               Separated link
             </Link>
           </li>

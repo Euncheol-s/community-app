@@ -4,9 +4,10 @@ import axios from "axios";
 
 import Home from "./routes/Home";
 import Department from "./routes/Department";
-import Major from "./routes/Major";
 import Board from "./routes/Board";
 import Profile from "./routes/Profile";
+import MajorInfo from "./routes/MajorInfo";
+import Login from "./routes/Login";
 
 function App() {
   const [hello, setHello] = useState("");
@@ -21,6 +22,9 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
         <Route path="/profile">
           <Profile />
         </Route>
@@ -28,7 +32,7 @@ function App() {
           <Board />
         </Route>
         <Route path="/major/:id">
-          <Major />
+          <MajorInfo />
         </Route>
         <Route path="/department">
           <Department />
