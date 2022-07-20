@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -24,4 +25,11 @@ public class Post {
     private String title;
     @Column
     private String content;
+    @Column
+    private String author;
+    @Column
+    private Date board_date;
+    @Column
+    private Integer recommend;
+
 }
