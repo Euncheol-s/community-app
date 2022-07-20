@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function Login() {
+function CreateAccount() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [nickName, setNickName] = useState("");
@@ -22,7 +22,7 @@ function Login() {
   return (
     <form>
       <div className="d-flex justify-content-center align-items-center mt-5 vstack">
-        <h3 className="container text-center">Log in to Community</h3>
+        <h3 className="container text-center">Sign up to Community</h3>
         <div className="card card-md w-25 shadow-sm mt-3">
           <div className="card-body">
             <div className="row">
@@ -110,22 +110,14 @@ function Login() {
             </div>
             <div className="d-grid gap-2 mx-auto mt-2">
               <button className="btn btn-success" type="submit">
-                Log in
+                Sign up
               </button>
             </div>
           </div>
-        </div>
-        <div className="card w-25 shadow-sm p-3 mt-3 text-center">
-          <span>
-            New to Community?{" "}
-            <Link className="text-decoration-none" to="/create">
-              Create an account
-            </Link>
-          </span>
         </div>
       </div>
     </form>
   );
 }
 
-export default Login;
+export default CreateAccount;

@@ -1,7 +1,8 @@
 import NavBar from "../components/NavBar";
+import Notices from "../components/Notices";
 import { useParams } from "react-router-dom";
 
-function Board() {
+function NoticeBoard() {
   const id = useParams();
   return (
     <>
@@ -9,8 +10,12 @@ function Board() {
       <div className="container overflow-auto">
         <div className="container mt-5 text-center">
           <h2>
-            {id.id === "1" ? "자유 " : id.id === "2" ? "정보 " : "장터 "}
-            게시판
+            {id.id === "1"
+              ? "소프트웨어학부 "
+              : id.id === "2"
+              ? "인공지능융합학부 "
+              : "데이터사이언스학부 "}
+            공지사항
           </h2>
         </div>
         <div className="container mt-5">
@@ -60,11 +65,13 @@ function Board() {
               </th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            <Notices />
+          </tbody>
         </table>
       </div>
     </>
   );
 }
 
-export default Board;
+export default NoticeBoard;

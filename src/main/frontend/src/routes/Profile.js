@@ -1,16 +1,17 @@
 import Navbar from "../components/NavBar";
+import { Link } from "react-router-dom";
 
 function Profile() {
   return (
     <>
       <Navbar />
-      <div className="container-fluid overflow-auto">
-        <div className="container mt-5">
-          <div className="row">
-            <div className="col-sm-4">
-              <span className="fs-4 me-3">Account Information</span>
-            </div>
-            <div className="col-sm-8">
+      <div className="container mt-4">
+        <div className="row">
+          <div className="col-sm-4">
+            <span className="fs-4 me-3">Account Information</span>
+          </div>
+          <div className="col-sm-8">
+            <form>
               <div className="card shadow-sm">
                 <div className="card-body">
                   <div className="row row-cols-2">
@@ -65,76 +66,73 @@ function Profile() {
                       >
                         <option selected>전공을 선택해주세요</option>
                         <optgroup label="소프트웨어학부">
-                          <option value="1">빅데이터전공</option>
-                          <option value="2">스마트IoT전공</option>
-                          <option value="3">콘텐츠IT전공</option>
+                          <option value="bigdata">빅데이터전공</option>
+                          <option value="smartiot">스마트IoT전공</option>
+                          <option value="contentsit">콘텐츠IT전공</option>
                         </optgroup>
                         <optgroup label="인공지능융합학부">
-                          <option value="1">AI의료융합전공</option>
-                          <option value="2">AI로봇융합전공</option>
-                          <option value="3">AI기술경영융합전공</option>
+                          <option value="aimedical">AI의료융합전공</option>
+                          <option value="airobot">AI로봇융합전공</option>
+                          <option value="aitech">AI기술경영융합전공</option>
                         </optgroup>
                         <optgroup label="데이터사이언스학부">
-                          <option value="1">데이터테크</option>
-                          <option value="2">임상의학통계</option>
-                          <option value="3">디지털금융정보</option>
+                          <option value="datatech">데이터테크</option>
+                          <option value="medicalstatistic">임상의학통계</option>
+                          <option value="digitalfinance">디지털금융정보</option>
                         </optgroup>
                       </select>
                     </div>
                   </div>
-                  <div
-                    className="container h-50"
-                    style={{ backgroundColor: "#faf9fb" }}
-                  >
-                    <button type="button" className="btn btn-primary">
+                  <div className="d-flex justify-content-end">
+                    <Link className="btn btn-primary" to="">
                       Save
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
-          <div className="row mt-5 mb-4">
-            <hr />
+        </div>
+        <div className="row mt-5 mb-4">
+          <hr />
+        </div>
+        <div className="row">
+          <div className="col-sm-4">
+            <span className="fs-4 me-3">Profile</span>
           </div>
-          <div className="row">
-            <div className="col-sm-4">
-              <span className="fs-4 me-3">Profile</span>
-            </div>
-            <div className="col-sm-8">
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title">Special title treatment</h5>
-                  <p className="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" className="btn btn-primary">
-                    Go somewhere
-                  </a>
-                </div>
+          <div className="col-sm-8">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <h5 className="card-title">Special title treatment</h5>
+                <p className="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <Link to="#" className="btn btn-primary">
+                  Go somewhere
+                </Link>
               </div>
             </div>
           </div>
-          <div className="row mt-5 mb-4">
-            <hr />
+        </div>
+        <div className="row mt-5 mb-4">
+          <hr />
+        </div>
+        <div className="row">
+          <div className="col-sm-4">
+            <span className="fs-4 me-3">Delete Account</span>
           </div>
-          <div className="row">
-            <div className="col-sm-4">
-              <span className="fs-4 me-3">Delete Account</span>
-            </div>
-            <div className="col-sm-8">
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title">Special title treatment</h5>
-                  <p className="card-text">
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <a href="#" className="btn btn-danger">
-                    Go somewhere
-                  </a>
-                </div>
+          <div className="col-sm-8">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <h5 className="card-title">Special title treatment</h5>
+                <p className="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <Link to="#" className="btn btn-danger">
+                  Go somewhere
+                </Link>
               </div>
             </div>
           </div>

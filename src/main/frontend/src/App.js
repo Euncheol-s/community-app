@@ -8,6 +8,8 @@ import Board from "./routes/Board";
 import Profile from "./routes/Profile";
 import MajorInfo from "./routes/MajorInfo";
 import Login from "./routes/Login";
+import NoticeBoard from "./routes/NoticeBoard";
+import CreateAccount from "./routes/CreateAccount";
 
 function App() {
   const [hello, setHello] = useState("");
@@ -22,6 +24,12 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/create">
+          <CreateAccount />
+        </Route>
+        <Route path="/notice/:id">
+          <NoticeBoard />
+        </Route>
         <Route path="/login">
           <Login />
         </Route>
