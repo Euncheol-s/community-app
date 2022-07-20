@@ -1,13 +1,13 @@
 import NavBar from "../components/NavBar";
 import Notices from "../components/Notices";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function NoticeBoard() {
   const id = useParams();
   return (
     <>
       <NavBar />
-      <div className="container overflow-auto">
+      <div className="container overflow-auto justify-content-center">
         <div className="container mt-5 text-center">
           <h2>
             {id.id === "1"
@@ -69,6 +69,37 @@ function NoticeBoard() {
             <Notices />
           </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+          <div className="d-flex justify-content-center">
+            <ul class="pagination">
+              <li class="page-item">
+                <Link class="page-link" to="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </Link>
+              </li>
+              <li class="page-item">
+                <Link class="page-link" to="#">
+                  1
+                </Link>
+              </li>
+              <li class="page-item">
+                <Link class="page-link" to="#">
+                  2
+                </Link>
+              </li>
+              <li class="page-item">
+                <Link class="page-link" to="#">
+                  3
+                </Link>
+              </li>
+              <li class="page-item">
+                <Link class="page-link" to="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
     </>
   );
