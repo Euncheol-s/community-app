@@ -12,20 +12,21 @@ import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "https://localhost:3000")
-@RequestMapping("/api/main")
+@RequestMapping("/api")
 public class mainPageController {
     @Autowired
     private PostRepository pr;
-    @GetMapping("/major/board/1/{id}")
-    public String freeBoard(@PathVariable Integer id, Model model){
-        Post entityPost=pr.findById(id).orElse(null);
-        model.addAttribute("PostList", entityPost);
-        return "";
+    @GetMapping("/board")
+    public List<Post> noticeSoftwareBoard(Model model){
+        List<Post> postEntity=pr.findAll();
+        model.addAttribute("PostList", postEntity);
+        return postEntity;
     }
-    @PostMapping("/api/main/major/software/create")
-    public String softwarePost(PostForm pf){
-        Post post=pf.toEntity();
-        Post tmp=pr.save(post);
-        return "redirect:/api/main/major/software/"+tmp.getId();
+    @PostMapping("/board/create")
+    public String softwarePost(PostForm pf) {
+        Post post = pf.toEntity();
+        Post tmp = pr.save(post);
+//        return "redirect:/api/board/"+tmp.getId();
+        return "";
     }
 }
