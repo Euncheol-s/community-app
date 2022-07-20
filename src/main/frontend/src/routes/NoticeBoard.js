@@ -26,8 +26,8 @@ function NoticeBoard() {
                 aria-label=".form-select-sm example"
               >
                 <option selected>선택</option>
-                <option value="1">제목</option>
-                <option value="2">작성자</option>
+                <option value="title">제목</option>
+                <option value="author">작성자</option>
               </select>
             </div>
             <div className="col-3">
@@ -69,6 +69,11 @@ function NoticeBoard() {
             <Notices />
           </tbody>
         </table>
+        <div className="d-flex justify-content-end">
+          <Link to={`/notice/write/${id.id}`} class="btn btn-primary">
+            글 쓰기
+          </Link>
+        </div>
         <nav aria-label="Page navigation example">
           <div className="d-flex justify-content-center">
             <ul class="pagination">
