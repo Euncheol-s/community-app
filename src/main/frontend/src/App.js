@@ -10,6 +10,8 @@ import MajorInfo from "./routes/MajorInfo";
 import Login from "./routes/Login";
 import NoticeBoard from "./routes/NoticeBoard";
 import CreateAccount from "./routes/CreateAccount";
+import BoardWrite from "./routes/BoardWrite";
+import Detail from "./routes/Detail";
 
 function App() {
   const [hello, setHello] = useState("");
@@ -24,6 +26,15 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/notice/detail/:id">
+          <Detail />
+        </Route>
+        <Route path="/notice/write">
+          <BoardWrite />
+        </Route>
+        <Route path="/board/write">
+          <BoardWrite />
+        </Route>
         <Route path="/create">
           <CreateAccount />
         </Route>
