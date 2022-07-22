@@ -1,34 +1,29 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React, { useState, useEffect, SetList } from "react";
+import axios from "axios";
 
 function Notice() {
-    const [pp, setUser]=useState("");
+    const [pp, SetList]=useState([]);
     useEffect(()=>{
-          Axios.post("/api/board").then((response)=>{
-            if(response.data){
-                console.log(response.data)
-                setUser(response.data)
-            }else{
-                alert("failed to");
-            }
-          });
-    },[]);
+          axios.get("/api/board").then((response)=>{
+            SetList(response.data)
+          })
+    },[])
     return (
-       <div>
-           <div className ="row">
-               <table className="table table-striped table-bordered">
-                   <tbody>
-                       <tr>
-                           <td> {pp.id} </td>
-                           <td> {pp.title} </td>
-                           <td> {pp.author} </td>
-                           <td> {pp.board_date} </td>
-                           <td> {pp.recommend} </td>
-                       </tr>
-                   </tbody>
-               </table>
-           </div>
-       </div>
+        <div className ="row">
+             {
+                 pp.map(function(a, i){
+                     return(
+                        <div>
+                            <div> {pp[i].id} </div>
+                            <div> {pp[i].title} </div>
+                            <div> {pp[i].author} </div>
+                            <div> {pp[i].board_date} </div>
+                            <div> {pp[i].recommend} </div>
+                        </div>
+                     )
+                 })
+             }
+        </div>
     );
 }
 export default Notice;
