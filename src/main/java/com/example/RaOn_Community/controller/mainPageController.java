@@ -3,6 +3,7 @@ package com.example.RaOn_Community.controller;
 import com.example.RaOn_Community.dto.PostForm;
 import com.example.RaOn_Community.entity.Post;
 import com.example.RaOn_Community.repository.PostRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.List;
 @Controller
 @CrossOrigin(origins = "https://localhost:3000")
 @RequestMapping("/api")
+@Slf4j
 public class mainPageController {
     @Autowired
     private PostRepository pr;
@@ -31,8 +33,14 @@ public class mainPageController {
         return postEntity;
     }
     @PostMapping("/board/insert")
-    public void softwarePost(PostForm pf) {
-        Post post = pf.toEntity();
-        Post tmp = pr.save(post);
+    public void softwarePost(PostForm post) {
+        log.info(post.toString());
+        post.setAuthor("홍길동");
+        Date now=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date=sdf.format(now);
+        java.sql.Date date1=java.sql.Date.valueOf(date);
+        post.setBoard_date(date1);
+        pr.save(post.toEntity());
     }
 }

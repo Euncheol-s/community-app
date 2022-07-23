@@ -4,7 +4,7 @@ import axios from "axios";
 function Notice() {
     const [pp, SetList]=useState([]);
     useEffect(()=>{
-          axios.get("/api/board").then((response)=>{
+          axios.get("/board").then((response)=>{
             SetList(response.data)
           })
     },[])
