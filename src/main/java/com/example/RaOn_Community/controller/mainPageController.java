@@ -39,5 +39,6 @@ public class mainPageController {
         java.sql.Date date1=java.sql.Date.valueOf(date);
         post.setBoard_date(date1);
         pr.save(post.toEntity());
+
     }
 }
