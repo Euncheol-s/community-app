@@ -20,7 +20,6 @@ function Board() {
                 className="form-select form-select-md"
                 aria-label=".form-select-sm example"
               >
-                <option selected>선택</option>
                 <option value="title">제목</option>
                 <option value="author">작성자</option>
               </select>
@@ -63,35 +62,35 @@ function Board() {
           <tbody></tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <Link to={`/board/write/${id.id}`} class="btn btn-primary">
+          <Link to={`/board/write/${id.id}`} className="btn btn-primary">
             글 쓰기
           </Link>
         </div>
         <nav aria-label="Page navigation example">
           <div className="d-flex justify-content-center">
-            <ul class="pagination">
-              <li class="page-item">
-                <Link class="page-link" to="#" aria-label="Previous">
+            <ul className="pagination">
+              <li className="page-item">
+                <Link className="page-link" to="#" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </Link>
               </li>
-              <li class="page-item">
-                <Link class="page-link" to="#">
+              <li className="page-item">
+                <Link className="page-link" to="#">
                   1
                 </Link>
               </li>
-              <li class="page-item">
-                <Link class="page-link" to="#">
+              <li className="page-item">
+                <Link className="page-link" to="#">
                   2
                 </Link>
               </li>
-              <li class="page-item">
-                <Link class="page-link" to="#">
+              <li className="page-item">
+                <Link className="page-link" to="#">
                   3
                 </Link>
               </li>
-              <li class="page-item">
-                <Link class="page-link" to="#" aria-label="Next">
+              <li className="page-item">
+                <Link className="page-link" to="#" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </Link>
               </li>
