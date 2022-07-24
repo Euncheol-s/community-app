@@ -6,10 +6,10 @@ import axios from "axios";
 
 function NoticeBoard() {
   const id = useParams();
-  const [list, setList] = useState([]);
+  const [list, SetList] = useState([]);
   useEffect(() => {
-    axios.get("/api/notice").then((response) => {
-      setList(response.data);
+    axios.get("http://localhost:8080/api/board").then((response) => {
+      SetList(response.data);
     });
   }, []);
   return (
@@ -116,5 +116,4 @@ function NoticeBoard() {
     </>
   );
 }
-
 export default NoticeBoard;

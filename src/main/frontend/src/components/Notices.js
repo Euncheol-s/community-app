@@ -34,5 +34,4 @@ function Notices(list) {
     </tr>
   );
 }
-
 export default Notices;
