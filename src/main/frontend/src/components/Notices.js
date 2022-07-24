@@ -1,29 +1,37 @@
-import React, { useState, useEffect, SetList } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function Notice() {
-    const [pp, SetList]=useState([]);
-    useEffect(()=>{
-          axios.get("/board").then((response)=>{
-            SetList(response.data)
-          })
-    },[])
-    return (
-        <div className ="row">
-             {
-                 pp.map(function(a, i){
-                     return(
-                        <div>
-                            <div> {pp[i].id} </div>
-                            <div> {pp[i].title} </div>
-                            <div> {pp[i].author} </div>
-                            <div> {pp[i].board_date} </div>
-                            <div> {pp[i].recommend} </div>
-                        </div>
-                     )
-                 })
-             }
-        </div>
-    );
+function Notices(list) {
+  const [number, setNumber] = useState(list.id);
+  const [title, setTitle] = useState(list.title);
+  const [author, setAuthor] = useState(list.author);
+  const [recommend, setRecommend] = useState(list.recommend);
+  const date = new Date();
+  const dateStr = date.toLocaleString();
+  return (
+    <tr>
+      <td className="col-1 text-center" id="number">
+        {number}
+      </td>
+      <td className="col-5 ">
+        <Link
+          className="text-decoration-none text-reset"
+          id="title"
+          to={`/notice/detail/${number}`}
+        >
+          {title}
+        </Link>
+      </td>
+      <td className="col-2 text-center" id="author">
+        {author}
+      </td>
+      <td className="col-2 text-center" id="board_date">
+        {dateStr}
+      </td>
+      <td className="col-2 text-center" id="recommend">
+        {recommend}
+      </td>
+    </tr>
+  );
 }
-export default Notice;
+export default Notices;
