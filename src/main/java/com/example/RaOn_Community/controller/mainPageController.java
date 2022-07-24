@@ -22,11 +22,6 @@ public class mainPageController {
     public List<Post> noticeSoftwareBoard(){
         List<Post> postEntity=pr.findAll();
         log.info(postEntity.toString());
-//        Date now=new Date();
-//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초");
-//        String date=sdf.format(now);
-//        java.sql.Date date1=java.sql.Date.valueOf(date);
-//        Post pp=new Post(1, "안녕하세요.", "반갑습니다.", "홍길동", date1, 0);
         return postEntity;
     }
     @PostMapping("/api/board/insert")
