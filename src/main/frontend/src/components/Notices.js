@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Notices() {
-  const [number, setNumber] = useState(1);
-  const [title, setTitle] = useState("title");
-  const [author, setAuthor] = useState("author");
-  const [recommend, setRecommend] = useState(0);
+function Notices(list) {
+  const [number, setNumber] = useState(list.id);
+  const [title, setTitle] = useState(list.title);
+  const [author, setAuthor] = useState(list.author);
+  const [recommend, setRecommend] = useState(list.recommend);
   const date = new Date();
   const dateStr = date.toLocaleString();
   return (
