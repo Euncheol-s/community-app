@@ -1,15 +1,14 @@
 import NavBar from "../components/NavBar";
-import Notices from "../components/Notices";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function NoticeBoard() {
   const id = useParams();
-  const [list, SetList] = useState([]);
+  const [list, setList] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
-      SetList(response.data);
+      setList(response.data);
     });
   }, []);
   return (
@@ -73,7 +72,29 @@ function NoticeBoard() {
             </tr>
           </thead>
           <tbody>
-            <Notices list={list} />
+            <tr>
+              <td className="col-1 text-center" id="number">
+                {list.id}
+              </td>
+              <td className="col-5 ">
+                <Link
+                  className="text-decoration-none text-reset"
+                  id="title"
+                  to={`/notice/detail/${id}`}
+                >
+                  {list.title}
+                </Link>
+              </td>
+              <td className="col-2 text-center" id="author">
+                {list.author}
+              </td>
+              <td className="col-2 text-center" id="board_date">
+                {list.board_date}
+              </td>
+              <td className="col-2 text-center" id="recommend">
+                {list.recommend}
+              </td>
+            </tr>
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
@@ -116,4 +137,5 @@ function NoticeBoard() {
     </>
   );
 }
+
 export default NoticeBoard;
