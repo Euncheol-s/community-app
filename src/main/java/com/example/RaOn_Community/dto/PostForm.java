@@ -2,12 +2,14 @@ package com.example.RaOn_Community.dto;
 
 import com.example.RaOn_Community.entity.Post;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
 
 @AllArgsConstructor
 @ToString
+@Setter
 public class PostForm {
     private Integer id;
     private String title;
