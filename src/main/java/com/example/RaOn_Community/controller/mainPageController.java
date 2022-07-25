@@ -24,6 +24,8 @@ public class mainPageController {
         log.info(postEntity.toString());
         return postEntity;
     }
+    @GetMapping("/api/board/insert")
+    public void newsoftwarePost(){}
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
         log.info(post.toString());

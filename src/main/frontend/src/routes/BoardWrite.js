@@ -3,10 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 
 function BoardWrite() {
-//  const [id, setId] = useState();
+  const [id, setId] = useState();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-//  const [author, setAuthor] = useState("");
+  const [author, setAuthor] = useState("");
   const [files, setFiles] = useState([]);
 
   const onChangeTitle = (event) => {
@@ -21,7 +21,7 @@ function BoardWrite() {
   return (
     <>
       <NavBar />
-      <form method='post' action='/api/board/insert'>
+      <form method='post' action='http://localhost:8080/api/board/insert'>
         <div className="container mt-5 card shadow-sm">
           <div className="card-body">
             <div className="mb-5 mt-4">
