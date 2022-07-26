@@ -33,7 +33,8 @@ public class mainPageController {
         Date now=new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
         String date=sdf.format(now);
-        post.setBoard_date(date);
+        java.sql.Date date1=java.sql.Date.valueOf(date);
+        post.setBoard_date(date1);
         pr.save(post.toEntity());
     }
 }
