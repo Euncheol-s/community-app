@@ -5,10 +5,18 @@ import axios from "axios";
 
 function NoticeBoard() {
   const id = useParams();
-  const [list, setList] = useState([]);
+  const [number, setId] = useState("");
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [date, setDate] = useState("");
+  const [recommend, setRecommend] = useState("");
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
-      setList(response.data);
+      setId(response.data[0].id);
+      setTitle(response.data[0].title);
+      setAuthor(response.data[0].author);
+      setDate(response.data[0].board_date);
+      setRecommend(response.data[0].recommend);
     });
   }, []);
   return (
@@ -74,7 +82,7 @@ function NoticeBoard() {
           <tbody>
             <tr>
               <td className="col-1 text-center" id="number">
-                {list.id}
+                {number}
               </td>
               <td className="col-5 ">
                 <Link
@@ -82,17 +90,17 @@ function NoticeBoard() {
                   id="title"
                   to={`/notice/detail/${id}`}
                 >
-                  {list.title}
+                  {title}
                 </Link>
               </td>
               <td className="col-2 text-center" id="author">
-                {list.author}
+                {author}
               </td>
               <td className="col-2 text-center" id="board_date">
-                {list.board_date}
+                {date}
               </td>
               <td className="col-2 text-center" id="recommend">
-                {list.recommend}
+                {recommend}
               </td>
             </tr>
           </tbody>

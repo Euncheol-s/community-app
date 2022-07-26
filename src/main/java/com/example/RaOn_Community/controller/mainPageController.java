@@ -24,12 +24,14 @@ public class mainPageController {
         log.info(postEntity.toString());
         return postEntity;
     }
+    @GetMapping("/api/board/insert")
+    public void newsoftwarePost(){}
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
         log.info(post.toString());
         post.setAuthor("홍길동");
         Date now=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
         String date=sdf.format(now);
         java.sql.Date date1=java.sql.Date.valueOf(date);
         post.setBoard_date(date1);
