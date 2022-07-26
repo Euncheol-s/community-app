@@ -11,6 +11,5 @@ React를 기반으로 Spring boot와 Flask를 이용하여 간단한 커뮤니�
 > MySQL Driver   
 > H2 Database   
 > Spring Data JPA
-> Mustache
 * React.js
 * Flask(`Python`)
