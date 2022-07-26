@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -28,7 +27,7 @@ public class Post {
     @Column
     private String author;
     @Column
-    private Date board_date;
+    private String board_date;
     @Column
     private Integer recommend;
 
