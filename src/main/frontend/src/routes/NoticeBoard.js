@@ -81,7 +81,7 @@ function NoticeBoard() {
                     <Link
                       className="text-decoration-none text-reset"
                       id="title"
-                      to={`/notice/detail/${id}`}
+                      to={`/notice/detail/${element.id}`}
                     >
                       {element.title}
                     </Link>

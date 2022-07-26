@@ -24,8 +24,11 @@ public class mainPageController {
         log.info(postEntity.toString());
         return postEntity;
     }
-    @GetMapping("/api/board/insert")
-    public void newsoftwarePost(){}
+    @GetMapping("/api/board/{id}")
+    public Post noticeSoftwareBoardId(@PathVariable Integer id){
+        Post post=pr.findById(id).orElse(null);
+        return post;
+    }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
         log.info(post.toString());
@@ -36,6 +39,5 @@ public class mainPageController {
         java.sql.Date date1=java.sql.Date.valueOf(date);
         post.setBoard_date(date1);
         pr.save(post.toEntity());
-
     }
 }
