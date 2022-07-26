@@ -5,18 +5,10 @@ import axios from "axios";
 
 function NoticeBoard() {
   const id = useParams();
-  const [number, setId] = useState("");
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [date, setDate] = useState("");
-  const [recommend, setRecommend] = useState("");
+  const [list, setList] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
-      setId(response.data[0].id);
-      setTitle(response.data[0].title);
-      setAuthor(response.data[0].author);
-      setDate(response.data[0].board_date);
-      setRecommend(response.data[0].recommend);
+        setList(response.data);
     });
   }, []);
   return (
@@ -80,29 +72,31 @@ function NoticeBoard() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="col-1 text-center" id="number">
-                {number}
-              </td>
-              <td className="col-5 ">
-                <Link
-                  className="text-decoration-none text-reset"
-                  id="title"
-                  to={`/notice/detail/${id}`}
-                >
-                  {title}
-                </Link>
-              </td>
-              <td className="col-2 text-center" id="author">
-                {author}
-              </td>
-              <td className="col-2 text-center" id="board_date">
-                {date}
-              </td>
-              <td className="col-2 text-center" id="recommend">
-                {recommend}
-              </td>
-            </tr>
+            {list.map((element) => (
+                <tr>
+                  <td className="col-1 text-center" id="number">
+                    {element.id}
+                  </td>
+                  <td className="col-5 ">
+                    <Link
+                      className="text-decoration-none text-reset"
+                      id="title"
+                      to={`/notice/detail/${element.id}`}
+                    >
+                      {element.title}
+                    </Link>
+                  </td>
+                  <td className="col-2 text-center" id="author">
+                    {element.author}
+                  </td>
+                  <td className="col-2 text-center" id="board_date">
+                    {element.board_date}
+                  </td>
+                  <td className="col-2 text-center" id="recommend">
+                    {element.recommend}
+                  </td>
+                </tr>
+            ))}
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
