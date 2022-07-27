@@ -1,12 +1,9 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
-import axios from "axios";
 
 function BoardWrite() {
-  const [id, setId] = useState();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  const [author, setAuthor] = useState("");
   const [files, setFiles] = useState([]);
 
   const onChangeTitle = (event) => {
@@ -21,9 +18,8 @@ function BoardWrite() {
   return (
     <>
       <NavBar />
-      <form method='post' action='http://localhost:8080/api/board/insert'>
         <div className="container mt-5 card shadow-sm">
-          <div className="card-body">
+          <form method='post' action='http://localhost:8080/api/board/insert'>
             <div className="mb-5 mt-4">
               <label htmlFor="title" className="form-label">
                 <h4>제목</h4>
@@ -32,6 +28,7 @@ function BoardWrite() {
                 type="text"
                 className="form-control"
                 id="title"
+                name="title"
                 placeholder="제목"
                 onChange={onChangeTitle}
                 value={title}
@@ -57,6 +54,7 @@ function BoardWrite() {
               <textarea
                 className="form-control"
                 id="contents"
+                name="content"
                 rows="3"
                 onChange={onChangeContents}
               >
@@ -68,9 +66,8 @@ function BoardWrite() {
                 저장
               </button>
             </div>
-          </div>
+          </form>
         </div>
-      </form>
     </>
   );
 }
