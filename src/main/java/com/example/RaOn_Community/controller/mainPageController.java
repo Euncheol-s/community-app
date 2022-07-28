@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,24 +17,28 @@ import java.util.List;
 public class mainPageController {
     @Autowired
     private PostRepository pr;
+    private Integer num;
     @GetMapping("/api/board")
     public List<Post> noticeSoftwareBoard(){
         List<Post> postEntity=pr.findAll();
-        log.info(postEntity.toString());
+        if(postEntity!=null)
+            num = postEntity.get(postEntity.size() - 1).getId();
         return postEntity;
     }
-    @GetMapping("/api/board/insert")
-    public void newsoftwarePost(){}
+    @GetMapping("/api/board/{id}")
+    public Post noticeSoftwareBoardId(@PathVariable Integer id){
+        Post post=pr.findById(id).orElse(null);
+        return post;
+    }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
-        log.info(post.toString());
-        post.setAuthor("홍길동");
+        post.setId(num+1);
+        post.setAuthor("관리자");
         Date now=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
-        String date=sdf.format(now);
-        java.sql.Date date1=java.sql.Date.valueOf(date);
+        long time=now.getTime();
+        java.sql.Date date1=new java.sql.Date(time);
         post.setBoard_date(date1);
+        post.setRecommend(0);
         pr.save(post.toEntity());
-
     }
 }

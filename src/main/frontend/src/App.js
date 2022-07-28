@@ -10,6 +10,7 @@ import Login from "./routes/Login";
 import NoticeBoard from "./routes/NoticeBoard";
 import CreateAccount from "./routes/CreateAccount";
 import BoardWrite from "./routes/BoardWrite";
+import NoticeWrite from "./routes/NoticeWrite";
 import Detail from "./routes/Detail";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Detail />
         </Route>
         <Route path="/notice/write">
-          <BoardWrite />
+          <NoticeWrite />
         </Route>
         <Route path="/board/write">
           <BoardWrite />

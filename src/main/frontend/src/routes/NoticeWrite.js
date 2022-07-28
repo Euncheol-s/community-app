@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 
-function BoardWrite() {
+function NoticeWrite() {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [files, setFiles] = useState([]);
@@ -72,4 +72,4 @@ function BoardWrite() {
   );
 }
 
-export default BoardWrite;
+export default NoticeWrite;
