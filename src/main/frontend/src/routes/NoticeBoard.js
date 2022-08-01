@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function NoticeBoard() {
-  const id = useParams();
-
   const obj = [
     {
       id: 1,
@@ -46,18 +44,11 @@ function NoticeBoard() {
       <NavBar />
       <div className="container overflow-auto justify-content-center">
         <div className="container mt-5 text-center">
-          <h2>
-            {id.id === "1"
-              ? "소프트웨어학부 "
-              : id.id === "2"
-              ? "인공지능융합학부 "
-              : "데이터사이언스학부 "}
-            공지사항
-          </h2>
+          <h2>빅데이터 공지사항</h2>
         </div>
         <div className="container mt-5">
           <div className="row justify-content-end">
-            <div className="col-1">
+            <div className="col-2">
               <select
                 className="form-select form-select-md"
                 aria-label=".form-select-sm example"
@@ -111,7 +102,7 @@ function NoticeBoard() {
                   <Link
                     className="text-decoration-none text-reset"
                     id="title"
-                    to={`/notice/detail/${id}`}
+                    to={`/notice/detail/${element.id}`}
                   >
                     {element.title}
                   </Link>
@@ -155,7 +146,7 @@ function NoticeBoard() {
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <Link to={`/notice/write/${id.id}`} className="btn btn-primary">
+          <Link to="/notice/write" className="btn btn-primary">
             글 쓰기
           </Link>
         </div>

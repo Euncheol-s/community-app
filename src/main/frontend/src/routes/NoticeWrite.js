@@ -18,9 +18,9 @@ function NoticeWrite() {
   return (
     <>
       <NavBar />
-      <div className="container mt-5 card shadow-sm">
+      <div className="container mt-5 card shadow-sm p-4">
         <form method="post" action="http://localhost:8080/api/board/insert">
-          <div className="mb-5 mt-4">
+          <div className="mb-5">
             <label htmlFor="title" className="form-label">
               <h4>제목</h4>
             </label>
