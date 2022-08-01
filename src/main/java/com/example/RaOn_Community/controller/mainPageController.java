@@ -1,8 +1,11 @@
 package com.example.RaOn_Community.controller;
 
 import com.example.RaOn_Community.dto.PostForm;
+import com.example.RaOn_Community.dto.UserForm;
 import com.example.RaOn_Community.entity.Post;
+import com.example.RaOn_Community.entity.User;
 import com.example.RaOn_Community.repository.PostRepository;
+import com.example.RaOn_Community.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,8 @@ import java.util.List;
 public class mainPageController {
     @Autowired
     private PostRepository pr;
+    @Autowired
+    private UserRepository ur;
     private Integer num;
     @GetMapping("/api/board")
     public List<Post> noticeSoftwareBoard(){
@@ -40,5 +45,15 @@ public class mainPageController {
         post.setBoard_date(date1);
         post.setRecommend(0);
         pr.save(post.toEntity());
+    }
+    @GetMapping("/api/sign/{id}")
+    public User login(@PathVariable Integer id){
+        User user=ur.findById(id).orElse(null);
+//        if(user.getNum().equals())
+        return user;
+    }
+    @PostMapping("/api/signIn")
+    public void signIn(UserForm user){
+        ur.save(user.toEntity());
     }
 }

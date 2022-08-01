@@ -35,6 +35,7 @@ function Login() {
                     type="text"
                     className="form-control"
                     id="nickName"
+                    name="nickname"
                     placeholder="닉네임을 입력해주세요."
                     value={nickName}
                     onChange={onChangeNickName}
@@ -52,6 +53,7 @@ function Login() {
                     type="text"
                     className="form-control"
                     id="userName"
+                    name="name"
                     placeholder="이름을 입력해주세요."
                     value={name}
                     onChange={onChangeName}
@@ -69,6 +71,7 @@ function Login() {
                     type="text"
                     className="form-control "
                     id="studentNum"
+                    name="num"
                     placeholder="학번을 입력해주세요."
                     value={id}
                     onChange={onChangeId}
@@ -85,6 +88,7 @@ function Login() {
                   className="form-select mb-3"
                   aria-label=".form-select example"
                   id="major"
+                  name="major"
                   style={{ color: "gray" }}
                   value={major}
                   onChange={onChangeMajor}
