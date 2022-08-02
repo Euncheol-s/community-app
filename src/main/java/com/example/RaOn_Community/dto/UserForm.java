@@ -11,8 +11,7 @@ public class UserForm {
     private String nickname;
     private String name;
     private String num;
-    private String major;
     public User toEntity(){
-        return new User(id, nickname, name, num, major);
+        return new User(id, nickname, name, num);
     }
 }

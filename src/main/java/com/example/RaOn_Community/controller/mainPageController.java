@@ -24,16 +24,27 @@ public class mainPageController {
     private UserRepository ur;
     private Integer num;
     @GetMapping("/api/board")
-    public List<Post> noticeSoftwareBoard(){
+    public List<Post> noticeBoard(){
         List<Post> postEntity=pr.findAll();
         if(postEntity!=null)
             num = postEntity.get(postEntity.size() - 1).getId();
         return postEntity;
     }
     @GetMapping("/api/board/{id}")
-    public Post noticeSoftwareBoardId(@PathVariable Integer id){
+    public Post noticeBoardId(@PathVariable Integer id){
         Post post=pr.findById(id).orElse(null);
         return post;
+    }
+    @GetMapping("/api/board/{id}/edit")
+    public void noticeBoardEdit(@PathVariable Integer id){
+        Post post=pr.findById(id).orElse(null);
+    }
+    @GetMapping("/api/board/{id}/delete")
+    public void noticeBoardDelete(@PathVariable Integer id){
+        Post post=pr.findById(id).orElse(null);
+        if(post!=null){
+            pr.delete(post);
+        }
     }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
@@ -49,7 +60,6 @@ public class mainPageController {
     @GetMapping("/api/sign/{id}")
     public User login(@PathVariable Integer id){
         User user=ur.findById(id).orElse(null);
-//        if(user.getNum().equals())
         return user;
     }
     @PostMapping("/api/signIn")
