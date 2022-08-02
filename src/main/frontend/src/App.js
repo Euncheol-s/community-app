@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 import Home from "./routes/Home";
-import Department from "./routes/Department";
 import Board from "./routes/Board";
 import Profile from "./routes/Profile";
 import Login from "./routes/Login";
@@ -43,9 +42,6 @@ function App() {
         </Route>
         <Route path="/council">
           <CouncilInfo />
-        </Route>
-        <Route path="/department">
-          <Department />
         </Route>
         <Route path="/">
           <Home />
