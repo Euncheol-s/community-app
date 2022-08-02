@@ -23,7 +23,7 @@ function Login() {
     <form>
       <div className="d-flex justify-content-center align-items-center mt-5 vstack">
         <h3 className="container text-center">Log in to Community</h3>
-        <div className="card card-md w-25 shadow-sm mt-3">
+        <div className="card card-md w-25 shadow-sm mt-3 p-3">
           <div className="card-body">
             <div className="row">
               <div className="col">

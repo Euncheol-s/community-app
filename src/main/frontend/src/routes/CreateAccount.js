@@ -22,7 +22,7 @@ function CreateAccount() {
     <form>
       <div className="d-flex justify-content-center align-items-center mt-5 vstack">
         <h3 className="container text-center">Sign up to Community</h3>
-        <div className="card card-md w-25 shadow-sm mt-3">
+        <div className="card card-md w-25 shadow-sm mt-3 p-3">
           <div className="card-body">
             <form method="post" action="http://localhost:8080/api/signIn">
               <div className="row">
