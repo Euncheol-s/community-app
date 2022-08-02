@@ -5,12 +5,13 @@ import Home from "./routes/Home";
 import Department from "./routes/Department";
 import Board from "./routes/Board";
 import Profile from "./routes/Profile";
-import MajorInfo from "./routes/MajorInfo";
 import Login from "./routes/Login";
 import NoticeBoard from "./routes/NoticeBoard";
 import CreateAccount from "./routes/CreateAccount";
 import BoardWrite from "./routes/BoardWrite";
+import NoticeWrite from "./routes/NoticeWrite";
 import Detail from "./routes/Detail";
+import CouncilInfo from "./routes/CouncilInfo";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Detail />
         </Route>
         <Route path="/notice/write">
-          <BoardWrite />
+          <NoticeWrite />
         </Route>
         <Route path="/board/write">
           <BoardWrite />
@@ -28,7 +29,7 @@ function App() {
         <Route path="/create">
           <CreateAccount />
         </Route>
-        <Route path="/notice/:id">
+        <Route path="/notice">
           <NoticeBoard />
         </Route>
         <Route path="/login">
@@ -40,8 +41,8 @@ function App() {
         <Route path="/board/:id">
           <Board />
         </Route>
-        <Route path="/major/:id">
-          <MajorInfo />
+        <Route path="/council">
+          <CouncilInfo />
         </Route>
         <Route path="/department">
           <Department />

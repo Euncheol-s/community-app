@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
 
-function BoardWrite() {
+function NoticeWrite() {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [files, setFiles] = useState([]);
@@ -18,9 +18,9 @@ function BoardWrite() {
   return (
     <>
       <NavBar />
-      <div className="container mt-5 card shadow-sm">
+      <div className="container mt-5 card shadow-sm p-4">
         <form method="post" action="http://localhost:8080/api/board/insert">
-          <div className="mb-5 mt-4">
+          <div className="mb-5">
             <label htmlFor="title" className="form-label">
               <h4>제목</h4>
             </label>
@@ -72,4 +72,4 @@ function BoardWrite() {
   );
 }
 
-export default BoardWrite;
+export default NoticeWrite;

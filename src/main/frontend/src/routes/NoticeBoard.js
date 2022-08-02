@@ -4,30 +4,51 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function NoticeBoard() {
-  const id = useParams();
+  const obj = [
+    {
+      id: 1,
+      title: "안녕하세요.",
+      content: "반갑습니다.",
+      author: "홍길동",
+      board_date: "2022-07-20",
+      recommend: 0,
+    },
+    {
+      id: 2,
+      title: "질문이 있습니다.",
+      content: "안녕",
+      author: "홍길동",
+      board_date: "2022-07-20",
+      recommend: 0,
+    },
+    {
+      id: 3,
+      title: "님들 그거 암?",
+      content: "미안하다, 어그로 좀 끌어봤다.",
+      author: "홍길동",
+      board_date: "2022-07-20",
+      recommend: 0,
+    },
+  ];
+  /*
   const [list, setList] = useState([]);
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
         setList(response.data);
     });
   }, []);
+  */
+
   return (
     <>
       <NavBar />
       <div className="container overflow-auto justify-content-center">
         <div className="container mt-5 text-center">
-          <h2>
-            {id.id === "1"
-              ? "소프트웨어학부 "
-              : id.id === "2"
-              ? "인공지능융합학부 "
-              : "데이터사이언스학부 "}
-            공지사항
-          </h2>
+          <h2>빅데이터 공지사항</h2>
         </div>
         <div className="container mt-5">
           <div className="row justify-content-end">
-            <div className="col-1">
+            <div className="col-2">
               <select
                 className="form-select form-select-md"
                 aria-label=".form-select-sm example"
@@ -72,7 +93,32 @@ function NoticeBoard() {
             </tr>
           </thead>
           <tbody>
-            {list.map((element) => (
+            {obj.map((element) => (
+              <tr>
+                <td className="col-1 text-center" id="number">
+                  {element.id}
+                </td>
+                <td className="col-5 ">
+                  <Link
+                    className="text-decoration-none text-reset"
+                    id="title"
+                    to={`/notice/detail/${element.id}`}
+                  >
+                    {element.title}
+                  </Link>
+                </td>
+                <td className="col-2 text-center" id="author">
+                  {element.author}
+                </td>
+                <td className="col-2 text-center" id="board_date">
+                  {element.board_date}
+                </td>
+                <td className="col-2 text-center" id="recommend">
+                  {element.recommend}
+                </td>
+              </tr>
+            ))}
+            {/*list.map((element) => (
                 <tr>
                   <td className="col-1 text-center" id="number">
                     {element.id}
@@ -96,11 +142,11 @@ function NoticeBoard() {
                     {element.recommend}
                   </td>
                 </tr>
-            ))}
+                */}
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <Link to={`/notice/write/${id.id}`} className="btn btn-primary">
+          <Link to="/notice/write" className="btn btn-primary">
             글 쓰기
           </Link>
         </div>

@@ -15,7 +15,7 @@ function Board() {
         </div>
         <div className="container mt-5">
           <div className="row justify-content-end">
-            <div className="col-1">
+            <div className="col-2">
               <select
                 className="form-select form-select-md"
                 aria-label=".form-select-sm example"

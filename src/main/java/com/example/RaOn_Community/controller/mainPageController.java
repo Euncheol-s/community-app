@@ -1,13 +1,15 @@
 package com.example.RaOn_Community.controller;
 
 import com.example.RaOn_Community.dto.PostForm;
+import com.example.RaOn_Community.dto.UserForm;
 import com.example.RaOn_Community.entity.Post;
+import com.example.RaOn_Community.entity.User;
 import com.example.RaOn_Community.repository.PostRepository;
+import com.example.RaOn_Community.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +20,14 @@ import java.util.List;
 public class mainPageController {
     @Autowired
     private PostRepository pr;
+    @Autowired
+    private UserRepository ur;
+    private Integer num;
     @GetMapping("/api/board")
     public List<Post> noticeSoftwareBoard(){
         List<Post> postEntity=pr.findAll();
-        log.info(postEntity.toString());
+        if(postEntity!=null)
+            num = postEntity.get(postEntity.size() - 1).getId();
         return postEntity;
     }
     @GetMapping("/api/board/{id}")
@@ -31,13 +37,23 @@ public class mainPageController {
     }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
-        log.info(post.toString());
-        post.setAuthor("홍길동");
+        post.setId(num+1);
+        post.setAuthor("관리자");
         Date now=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String date=sdf.format(now);
-        java.sql.Date date1=java.sql.Date.valueOf(date);
+        long time=now.getTime();
+        java.sql.Date date1=new java.sql.Date(time);
         post.setBoard_date(date1);
+        post.setRecommend(0);
         pr.save(post.toEntity());
+    }
+    @GetMapping("/api/sign/{id}")
+    public User login(@PathVariable Integer id){
+        User user=ur.findById(id).orElse(null);
+//        if(user.getNum().equals())
+        return user;
+    }
+    @PostMapping("/api/signIn")
+    public void signIn(UserForm user){
+        ur.save(user.toEntity());
     }
 }
