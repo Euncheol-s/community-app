@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 function NoticeBoard() {
   const [list, setList] = useState([]);
@@ -82,7 +83,7 @@ function NoticeBoard() {
                   {element.author}
                 </td>
                 <td className="col-2 text-center" id="board_date">
-                  {element.board_date}
+                  {moment(element.board_date).format('YYYY.MM.DD HH:mm:ss')}
                 </td>
                 <td className="col-2 text-center" id="recommend">
                   {element.recommend}

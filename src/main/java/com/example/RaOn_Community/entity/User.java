@@ -22,6 +22,4 @@ public class User {
     private String name;
     @Column
     private String num;
-    @Column
-    private String major;
 }

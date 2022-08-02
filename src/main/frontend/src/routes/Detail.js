@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 
 function Detail() {
   const number = useParams();
@@ -17,10 +18,7 @@ function Detail() {
         setList(response.data);
     });
   },[]);
-  const author = "author";
-  const date = "yyyy. mm. dd. AM hh:mm:ss";
-  const contents = "contents";
-  const recommend = 0;
+  const date = moment(list.board_date).format('YYYY.MM.DD HH:mm:ss');
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
 
@@ -46,7 +44,7 @@ function Detail() {
                 ></img>
                 <div className="container d-flex flex-column">
                   <span>{list.author}</span>
-                  <span>{list.board_date}</span>
+                  <span>{date}</span>
                 </div>
               </div>
               <div className="container d-flex justify-content-end">
