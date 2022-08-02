@@ -49,7 +49,6 @@ public class mainPageController {
     @GetMapping("/api/sign/{id}")
     public User login(@PathVariable Integer id){
         User user=ur.findById(id).orElse(null);
-//        if(user.getNum().equals())
         return user;
     }
     @PostMapping("/api/signIn")

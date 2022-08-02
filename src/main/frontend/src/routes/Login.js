@@ -5,7 +5,6 @@ function Login() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [nickName, setNickName] = useState("");
-  const [major, setMajor] = useState("");
 
   const onChangeId = (event) => {
     setId(event.target.value);
@@ -16,14 +15,12 @@ function Login() {
   const onChangeNickName = (event) => {
     setNickName(event.target.value);
   };
-  const onChangeMajor = (event) => {
-    setMajor(event.target.value);
-  };
+
   return (
     <form>
       <div className="d-flex justify-content-center align-items-center mt-5 vstack">
         <h3 className="container text-center">Log in to Community</h3>
-        <div className="card card-md w-25 shadow-sm mt-3">
+        <div className="card card-md w-25 shadow-sm mt-3 p-3">
           <div className="card-body">
             <div className="row">
               <div className="col">
@@ -79,39 +76,7 @@ function Login() {
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col">
-                <label htmlFor="major" className="form-label">
-                  전공
-                </label>
-                <select
-                  className="form-select mb-3"
-                  aria-label=".form-select example"
-                  id="major"
-                  name="major"
-                  style={{ color: "gray" }}
-                  value={major}
-                  onChange={onChangeMajor}
-                >
-                  <option selected>전공을 선택해주세요</option>
-                  <optgroup label="소프트웨어학부">
-                    <option value="bigdata">빅데이터전공</option>
-                    <option value="smartiot">스마트IoT전공</option>
-                    <option value="contentsit">콘텐츠IT전공</option>
-                  </optgroup>
-                  <optgroup label="인공지능융합학부">
-                    <option value="aimedical">AI의료융합전공</option>
-                    <option value="airobot">AI로봇융합전공</option>
-                    <option value="aitech">AI기술경영융합전공</option>
-                  </optgroup>
-                  <optgroup label="데이터사이언스학부">
-                    <option value="datatech">데이터테크</option>
-                    <option value="medicalstatistic">임상의학통계</option>
-                    <option value="digitalfinance">디지털금융정보</option>
-                  </optgroup>
-                </select>
-              </div>
-            </div>
+
             <div className="d-grid gap-2 mx-auto mt-2">
               <button className="btn btn-success" type="submit">
                 Log in

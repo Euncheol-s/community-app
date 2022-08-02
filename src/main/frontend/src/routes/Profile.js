@@ -1,7 +1,15 @@
 import Navbar from "../components/NavBar";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Profile() {
+  const userImage =
+    "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
+
+  const [userImg, setUserImg] = useState(userImage);
+  const onChange = function (event) {
+    setUserImg(event.target.value);
+  };
   return (
     <>
       <Navbar />
@@ -84,9 +92,7 @@ function Profile() {
                     </div>
                   </div>
                   <div className="d-flex justify-content-end">
-                    <Link className="btn btn-primary" to="">
-                      Save
-                    </Link>
+                    <button className="btn btn-primary">Save</button>
                   </div>
                 </div>
               </div>
@@ -102,15 +108,30 @@ function Profile() {
           </div>
           <div className="col-sm-8">
             <div className="card shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">Special title treatment</h5>
-                <p className="card-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p>
-                <Link to="#" className="btn btn-primary">
-                  Go somewhere
-                </Link>
+              <div className="card-body pt-4 ps-4">
+                <h5 className="card-title">프로필 사진 변경</h5>
+                <div className="container mt-4 d-flex ps-5">
+                  <img
+                    src={userImg}
+                    alt="user"
+                    style={{
+                      width: "5%",
+                      height: "5%",
+                      "border-radius": "50%",
+                    }}
+                  ></img>
+                  <div className="mb-3 ms-3">
+                    <input
+                      className="form-control"
+                      type="file"
+                      id="imgFile"
+                      onChange={onChange}
+                    />
+                  </div>
+                </div>
+                <div className="d-flex justify-content-end">
+                  <button className="btn btn-primary">Save</button>
+                </div>
               </div>
             </div>
           </div>
@@ -118,7 +139,7 @@ function Profile() {
         <div className="row mt-5 mb-4">
           <hr />
         </div>
-        <div className="row">
+        <div className="row mb-5">
           <div className="col-sm-4">
             <span className="fs-4 me-3">Delete Account</span>
           </div>

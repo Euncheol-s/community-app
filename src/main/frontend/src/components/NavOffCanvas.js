@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function NavOffCanvas() {
   return (
     <>
@@ -35,19 +33,19 @@ function NavOffCanvas() {
         <div className="offcanvas-body">
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li className="nav-item mb-2">
-              <Link className="nav-link fs-5" role="button" to="/profile">
+              <a className="nav-link fs-5" role="button" href="/profile">
                 내 정보
-              </Link>
+              </a>
             </li>
             <li className="nav-item mb-2">
-              <Link className="nav-link fs-5" role="button" to="/written">
+              <a className="nav-link fs-5" role="button" href="/written">
                 내가 작성한 글
-              </Link>
+              </a>
             </li>
             <li className="nav-item mb-2">
-              <Link className="nav-link fs-5" role="button" to="/recommended">
+              <a className="nav-link fs-5" role="button" href="/recommended">
                 내가 추천한 글
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
