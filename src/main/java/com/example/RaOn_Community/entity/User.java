@@ -8,6 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
+@Table(name="user")
 @ToString
 @Getter
 @AllArgsConstructor
@@ -16,10 +17,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column
+    @Column(length = 10, nullable = false)
     private String nickname;
-    @Column
+    @Column(length = 10, nullable = false)
     private String name;
-    @Column
+    @Column(length = 8, nullable = false)
     private String num;
 }

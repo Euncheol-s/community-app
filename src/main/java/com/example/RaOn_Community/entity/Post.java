@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="post")
 @AllArgsConstructor
 @ToString
 @Getter
@@ -15,15 +16,14 @@ public class Post {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column
+    @Column(length = 100, nullable = false)
     private String title;
-    @Column
+    @Column(length = 1500, nullable = false)
     private String content;
-    @Column
+    @Column(length = 10, nullable = false)
     private String author;
-    @Column
+    @Column(nullable = false)
     private Date board_date;
-    @Column
+    @Column(nullable = false)
     private Integer recommend;
-
 }
