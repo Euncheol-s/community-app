@@ -2,10 +2,8 @@ package com.example.RaOn_Community.controller;
 
 import com.example.RaOn_Community.dto.PostForm;
 import com.example.RaOn_Community.dto.UserForm;
-import com.example.RaOn_Community.entity.Post;
-import com.example.RaOn_Community.entity.User;
-import com.example.RaOn_Community.repository.PostRepository;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.entity.*;
+import com.example.RaOn_Community.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +18,12 @@ import java.util.List;
 public class mainPageController {
     @Autowired
     private PostRepository pr;
+    @Autowired
+    private FreePostRepository fr;
+    @Autowired
+    private InformationRepository ir;
+    @Autowired
+    private MarketRepository mr;
     @Autowired
     private UserRepository ur;
     private Integer num;
@@ -56,6 +60,21 @@ public class mainPageController {
         post.setBoard_date(date1);
         post.setRecommend(0);
         pr.save(post.toEntity());
+    }
+    @GetMapping("/api/freeboard")
+    public List<FreePost> freeBoard(){
+        List<FreePost> free=fr.findAll();
+        return free;
+    }
+    @GetMapping("/api/information")
+    public List<InformationPost> infromationBoard(){
+        List<InformationPost> inform=ir.findAll();
+        return inform;
+    }
+    @GetMapping("/api/market")
+    public List<Market> marketBoard(){
+        List<Market> market=mr.findAll();
+        return market;
     }
     @GetMapping("/api/sign/{id}")
     public User login(@PathVariable Integer id){
