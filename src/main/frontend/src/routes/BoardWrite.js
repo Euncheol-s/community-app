@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import axios from "axios";
 
 function BoardWrite() {
   const type = useParams();
@@ -26,6 +27,20 @@ function BoardWrite() {
       ? setBoard("information")
       : setBoard("market");
   }, []);
+
+  const onClick = () => {
+    axios
+      .post(`http://localhost:8080/api/${board}/insert`, {
+        title: { title },
+        content: { contents },
+        //file: {files},
+      })
+      .then(history.push("/board/" + type.id))
+      .catch((error) => {
+        console.log(error);
+        history.push("/board/" + type.id);
+      });
+  };
 
   return (
     <>
@@ -77,13 +92,7 @@ function BoardWrite() {
             </textarea>
           </div>
           <div className="d-flex justify-content-end">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              onClick={() => {
-                history.push("/board/" + type.id);
-              }}
-            >
+            <button type="submit" className="btn btn-primary" onClick={onClick}>
               저장
             </button>
           </div>
