@@ -40,15 +40,16 @@ function Board() {
   ];*/
   useEffect(() => {
         type.id === "1"
-          ? setBoard("freeboard")
+          ? axios.get("http://localhost:8080/api/freeboard").then((response) => {
+                    setPosts(response.data);
+            })
           : type.id === "2"
-          ? setBoard("information")
-          : setBoard("market");
-  }, []);
-  useEffect(() => {
-    axios.get("http://localhost:8080/api/${board}").then((response) => {
-        setPosts(response.data);
-    });
+          ? axios.get("http://localhost:8080/api/information").then((response) => {
+                                setPosts(response.data);
+            })
+          : axios.get("http://localhost:8080/api/market").then((response) => {
+                                            setPosts(response.data);
+            });
   }, []);
 
   return (
