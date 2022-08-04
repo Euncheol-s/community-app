@@ -1,5 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 function NoticeWrite() {
   const [title, setTitle] = useState("");
@@ -15,58 +17,73 @@ function NoticeWrite() {
   const onChangeFiles = (event) => {
     setFiles(event.target.value);
   };
+  const onClick = async (event) => {
+    try {
+      axios
+        .post("http://localhost:8080/api/board/insert", {
+          title: { title },
+          contents: { contents },
+          files: { files },
+        })
+        .then((response) => {
+          response.redirect("/notice");
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <NavBar />
       <div className="container mt-5 card shadow-sm p-4">
-        <form method="post" action="http://localhost:8080/api/board/insert">
-          <div className="mb-5">
-            <label htmlFor="title" className="form-label">
-              <h4>제목</h4>
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              placeholder="제목"
-              onChange={onChangeTitle}
-              value={title}
-            />
-          </div>
-          <div className="mb-5">
-            <label htmlFor="formFileMultiple" className="form-label">
-              <h4>파일</h4>
-            </label>
-            <input
-              className="form-control"
-              type="file"
-              id="formFileMultiple"
-              multiple
-              onChange={onChangeFiles}
-              value={files}
-            />
-          </div>
-          <div className="mb-5">
-            <label htmlFor="contents" className="form-label">
-              <h4>내용</h4>
-            </label>
-            <textarea
-              className="form-control"
-              id="contents"
-              name="content"
-              rows="3"
-              onChange={onChangeContents}
-            >
-              {contents}
-            </textarea>
-          </div>
-          <div className="d-flex justify-content-end">
-            <button type="submit" className="btn btn-primary">
-              저장
-            </button>
-          </div>
-        </form>
+        {/*<form method="post" action="http://localhost:8080/api/board/insert">*/}
+        <div className="mb-5">
+          <label htmlFor="title" className="form-label">
+            <h4>제목</h4>
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name="title"
+            placeholder="제목"
+            onChange={onChangeTitle}
+            value={title}
+          />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="formFileMultiple" className="form-label">
+            <h4>파일</h4>
+          </label>
+          <input
+            className="form-control"
+            type="file"
+            id="formFileMultiple"
+            multiple
+            onChange={onChangeFiles}
+            value={files}
+          />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="contents" className="form-label">
+            <h4>내용</h4>
+          </label>
+          <textarea
+            className="form-control"
+            id="contents"
+            name="content"
+            rows="3"
+            onChange={onChangeContents}
+          >
+            {contents}
+          </textarea>
+        </div>
+        <div className="d-flex justify-content-end">
+          <button type="submit" className="btn btn-primary" onClick={onClick}>
+            저장
+          </button>
+        </div>
+        {/*</form>*/}
       </div>
     </>
   );
