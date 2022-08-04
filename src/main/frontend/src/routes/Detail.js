@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
-
 function Detail() {
   const number = useParams();
   /*
@@ -17,13 +16,22 @@ function Detail() {
   */
   const [list, setList] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/board/${number.id}`).then((response) => {
+    axios
+      .get(`http://localhost:8080/api/board/${number.id}`)
+      .then((response) => {
         setList(response.data);
-    });
-  },[]);
-  const date = moment(list.board_date).format('YYYY.MM.DD HH:mm:ss');
+      });
+  }, []);
+  const date = moment(list.board_date).format("YYYY.MM.DD HH:mm:ss");
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
+
+  const isNotice = window.location.pathname.split("/")[1] === "notice";
+  const boardType = window.location.pathname.split("/")[3];
+  const [board, setBoard] = useState("");
+
+  const onEditing = (event) => {};
+  const onDeleting = (event) => {};
 
   return (
     <>
@@ -56,10 +64,18 @@ function Detail() {
             </div>
             {/*본인이 작성한 글이면 보이는 div*/}
             <div className="container d-flex justify-content-end">
-              <button type="button" className="btn btn-primary me-2">
+              <button
+                type="button"
+                className="btn btn-primary me-2"
+                onClick={onEditing}
+              >
                 수정
               </button>
-              <button type="button" className="btn btn-danger">
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={onDeleting}
+              >
                 삭제
               </button>
             </div>

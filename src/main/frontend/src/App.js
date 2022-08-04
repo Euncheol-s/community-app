@@ -16,13 +16,16 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/board/:type/detail/:id">
+          <Detail />
+        </Route>
         <Route path="/notice/detail/:id">
           <Detail />
         </Route>
         <Route path="/notice/write">
           <NoticeWrite />
         </Route>
-        <Route path="/board/write">
+        <Route path="/board/:id/write">
           <BoardWrite />
         </Route>
         <Route path="/create">

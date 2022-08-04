@@ -1,10 +1,12 @@
 import NavBar from "../components/NavBar";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function NoticeWrite() {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [files, setFiles] = useState([]);
+  const history = useHistory();
 
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -57,12 +59,19 @@ function NoticeWrite() {
               name="content"
               rows="3"
               onChange={onChangeContents}
+              value={contents}
             >
               {contents}
             </textarea>
           </div>
           <div className="d-flex justify-content-end">
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={() => {
+                history.push("/notice");
+              }}
+            >
               저장
             </button>
           </div>
