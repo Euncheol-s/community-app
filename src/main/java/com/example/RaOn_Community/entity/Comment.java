@@ -1,26 +1,24 @@
 package com.example.RaOn_Community.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="user")
-@ToString
-@Getter
+@Table(name = "comment")
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(length = 10, nullable = false)
     private String nickname;
-    @Column(length = 10, nullable = false)
-    private String name;
-    @Column(length = 8, nullable = false)
-    private String num;
+    @Column(length = 150, nullable = false)
+    private String com;
+    @Column(nullable = false)
+    private Integer recommend;
+    @Column(nullable = false)
+    private Integer notrecommend;
 }

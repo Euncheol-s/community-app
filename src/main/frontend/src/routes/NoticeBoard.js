@@ -10,7 +10,7 @@ function NoticeBoard() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-  const obj = [
+  /*const obj = [
     {
       id: 1,
       title: "안녕하세요.",
@@ -35,14 +35,12 @@ function NoticeBoard() {
       board_date: "2022-07-20",
       recommend: 0,
     },
-  ];
-  /*
+  ];*/
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
         setPosts(response.data);
     });
   }, []);
-  */
   return (
     <>
       <NavBar />
@@ -97,7 +95,7 @@ function NoticeBoard() {
             </tr>
           </thead>
           <tbody>
-            {obj
+            {posts
               .slice(offset, offset + limit)
               .map(({ id, title, author, board_date, recommend }) => (
                 <tr key={id}>
@@ -132,7 +130,7 @@ function NoticeBoard() {
           </Link>
         </div>
         <Pagination
-          total={obj.length}
+          total={posts.length}
           limit={limit}
           page={page}
           setPage={setPage}

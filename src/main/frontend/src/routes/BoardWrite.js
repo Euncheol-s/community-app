@@ -20,13 +20,12 @@ function BoardWrite() {
     setFiles(event.target.value);
   };
   useEffect(() => {
-    type.id === "1"
-      ? setBoard("freeboard")
-      : type.id === "2"
-      ? setBoard("information")
-      : setBoard("market");
+      type.id === "1"
+        ? setBoard("freeboard")
+        : type.id === "2"
+        ? setBoard("information")
+        : setBoard("market");
   }, []);
-
   return (
     <>
       <NavBar />

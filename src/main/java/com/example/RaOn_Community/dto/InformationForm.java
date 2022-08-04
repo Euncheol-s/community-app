@@ -2,11 +2,13 @@ package com.example.RaOn_Community.dto;
 
 import com.example.RaOn_Community.entity.InformationPost;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
 
 @AllArgsConstructor
+@Setter
 @ToString
 public class InformationForm {
     private Integer id;

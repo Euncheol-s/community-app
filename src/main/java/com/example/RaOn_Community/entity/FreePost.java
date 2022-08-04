@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "freepost")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,14 +18,14 @@ public class FreePost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column
+    @Column(length = 100, nullable = false)
     private String title;
-    @Column
-    private String author;
-    @Column
+    @Column(length = 1500, nullable = false)
     private String content;
-    @Column
+    @Column(length = 10, nullable = false)
+    private String author;
+    @Column(nullable = false)
     private Date board_date;
-    @Column
+    @Column(nullable = false)
     private Integer recommend;
 }
