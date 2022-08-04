@@ -1,8 +1,11 @@
 import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
+
+import Comment from "../components/Comment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+
 
 function Detail() {
   const number = useParams();
@@ -25,11 +28,11 @@ function Detail() {
   return (
     <>
       <NavBar />
-      <div className="container mt-5">
+      <div className="container overflow-auto mt-5 mb-5">
         <div className="card mx-5">
           <div className="card-body">
             <div className="container mt-3 mb-4">
-              <h5>{list.title}</h5>
+              <h3>{list.title}</h3>
             </div>
             <div className="container d-flex justify-content-between mb-5">
               <div className="container d-flex flex-row">
@@ -43,7 +46,7 @@ function Detail() {
                   }}
                 ></img>
                 <div className="container d-flex flex-column">
-                  <span>{list.author}</span>
+                  <b>{list.author}</b>
                   <span>{date}</span>
                 </div>
               </div>
@@ -60,9 +63,12 @@ function Detail() {
                 삭제
               </button>
             </div>
+            <hr />
             <div className="container">
               <p className="card-text">{list.content}</p>
             </div>
+            <hr />
+            <Comment />
           </div>
         </div>
       </div>
