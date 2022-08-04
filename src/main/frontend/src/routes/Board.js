@@ -1,16 +1,18 @@
 import NavBar from "../components/NavBar";
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
+import axios from "axios";
 
 function Board() {
   const type = useParams();
   const [posts, setPosts] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
+  const [board, setBoard] = useState("");
   const offset = (page - 1) * limit;
 
-  const obj = [
+  /*const obj = [
     {
       id: 1,
       title: "안녕하세요.",
@@ -35,14 +37,20 @@ function Board() {
       board_date: "2022-07-20",
       recommend: 0,
     },
-  ];
-  /*
+  ];*/
   useEffect(() => {
-    axios.get("http://localhost:8080/api/board").then((response) => {
+        type.id === "1"
+          ? setBoard("freeboard")
+          : type.id === "2"
+          ? setBoard("information")
+          : setBoard("market");
+  }, []);
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/${board}").then((response) => {
         setPosts(response.data);
     });
   }, []);
-  */
+
   return (
     <>
       <NavBar />
@@ -100,7 +108,34 @@ function Board() {
             </tr>
           </thead>
           <tbody>
-            {obj
+            {/*obj
+              .slice(offset, offset + limit)
+              .map(({ id, title, author, board_date, recommend }) => (
+                <tr key={id}>
+                  <td className="col-1 text-center" id="number">
+                    {id}
+                  </td>
+                  <td className="col-5 ">
+                    <Link
+                      className="text-decoration-none text-reset"
+                      id="title"
+                      to={`/board/${type.id}/detail/${id}`}
+                    >
+                      {title}
+                    </Link>
+                  </td>
+                  <td className="col-2 text-center" id="author">
+                    {author}
+                  </td>
+                  <td className="col-2 text-center" id="board_date">
+                    {board_date}
+                  </td>
+                  <td className="col-2 text-center" id="recommend">
+                    {recommend}
+                  </td>
+                </tr>
+              ))*/}
+            {posts
               .slice(offset, offset + limit)
               .map(({ id, title, author, board_date, recommend }) => (
                 <tr key={id}>
@@ -127,33 +162,6 @@ function Board() {
                   </td>
                 </tr>
               ))}
-            {/*posts
-              .slice(offset, offset + limit)
-              .map(({ id, title, author, board_date, recommend }) => (
-                <tr key={id}>
-                  <td className="col-1 text-center" id="number">
-                    {id}
-                  </td>
-                  <td className="col-5 ">
-                    <Link
-                      className="text-decoration-none text-reset"
-                      id="title"
-                      to={`/notice/detail/${id}`}
-                    >
-                      {title}
-                    </Link>
-                  </td>
-                  <td className="col-2 text-center" id="author">
-                    {author}
-                  </td>
-                  <td className="col-2 text-center" id="board_date">
-                    {board_date}
-                  </td>
-                  <td className="col-2 text-center" id="recommend">
-                    {recommend}
-                  </td>
-                </tr>
-              ))*/}
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
@@ -161,20 +169,20 @@ function Board() {
             글 쓰기
           </Link>
         </div>
-        <Pagination
+        {/*<Pagination
           total={obj.length}
           limit={limit}
           page={page}
           setPage={setPage}
-        />
-        {/*
+        />*/}
+        {
         <Pagination
           total={posts.length}
           limit={limit}
           page={page}
           setPage={setPage}
         />
-        */}
+        }
       </div>
     </>
   );
