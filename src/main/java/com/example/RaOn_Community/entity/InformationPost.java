@@ -6,20 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@ToString
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Getter
+@ToString
+public class InformationPost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column
-    private String nickname;
+    private String title;
     @Column
-    private String name;
+    private String author;
     @Column
-    private String num;
+    private String content;
+    @Column
+    private Date board_date;
+    @Column
+    private Integer recommend;
 }
