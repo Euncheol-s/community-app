@@ -3,12 +3,42 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import Pagination from "../components/Pagination";
 
 function NoticeBoard() {
-  const [list, setList] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+  /*const obj = [
+    {
+      id: 1,
+      title: "안녕하세요.",
+      content: "반갑습니다.",
+      author: "홍길동",
+      board_date: "2022-07-20",
+      recommend: 0,
+    },
+    {
+      id: 2,
+      title: "질문이 있습니다.",
+      content: "안녕",
+      author: "홍길동",
+      board_date: "2022-07-20",
+      recommend: 0,
+    },
+    {
+      id: 3,
+      title: "님들 그거 암?",
+      content: "미안하다, 어그로 좀 끌어봤다.",
+      author: "홍길동",
+      board_date: "2022-07-20",
+      recommend: 0,
+    },
+  ];*/
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
-        setList(response.data);
+        setPosts(response.data);
     });
   }, []);
   return (
@@ -65,31 +95,33 @@ function NoticeBoard() {
             </tr>
           </thead>
           <tbody>
-            {list.map((element) => (
-              <tr>
-                <td className="col-1 text-center" id="number">
-                  {element.id}
-                </td>
-                <td className="col-5 ">
-                  <Link
-                    className="text-decoration-none text-reset"
-                    id="title"
-                    to={`/notice/detail/${element.id}`}
-                  >
-                    {element.title}
-                  </Link>
-                </td>
-                <td className="col-2 text-center" id="author">
-                  {element.author}
-                </td>
-                <td className="col-2 text-center" id="board_date">
-                  {moment(element.board_date).format('YYYY.MM.DD HH:mm:ss')}
-                </td>
-                <td className="col-2 text-center" id="recommend">
-                  {element.recommend}
-                </td>
-              </tr>
-            ))}
+            {posts
+              .slice(offset, offset + limit)
+              .map(({ id, title, author, board_date, recommend }) => (
+                <tr key={id}>
+                  <td className="col-1 text-center" id="number">
+                    {id}
+                  </td>
+                  <td className="col-5 ">
+                    <Link
+                      className="text-decoration-none text-reset"
+                      id="title"
+                      to={`/notice/detail/${id}`}
+                    >
+                      {title}
+                    </Link>
+                  </td>
+                  <td className="col-2 text-center" id="author">
+                    {author}
+                  </td>
+                  <td className="col-2 text-center" id="board_date">
+                    {moment(board_date).format("YYYY.MM.DD HH:mm:ss")}
+                  </td>
+                  <td className="col-2 text-center" id="recommend">
+                    {recommend}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
@@ -97,37 +129,12 @@ function NoticeBoard() {
             글 쓰기
           </Link>
         </div>
-        <nav aria-label="Page navigation example">
-          <div className="d-flex justify-content-center">
-            <ul className="pagination">
-              <li className="page-item">
-                <Link className="page-link" to="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#">
-                  1
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#">
-                  2
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#">
-                  3
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link className="page-link" to="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Pagination
+          total={posts.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
       </div>
     </>
   );
