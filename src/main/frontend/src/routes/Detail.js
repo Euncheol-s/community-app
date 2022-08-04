@@ -2,14 +2,9 @@ import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
 
 import Comment from "../components/Comment";
-<<<<<<< HEAD
-import { useState } from "react";
-=======
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
-
->>>>>>> 0612f43f480686bcd6d3f97fb413f8d51c18687f
 
 function Detail() {
   const number = useParams();
@@ -21,11 +16,13 @@ function Detail() {
   */
   const [list, setList] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/board/${number.id}`).then((response) => {
+    axios
+      .get(`http://localhost:8080/api/board/${number.id}`)
+      .then((response) => {
         setList(response.data);
-    });
-  },[]);
-  const date = moment(list.board_date).format('YYYY.MM.DD HH:mm:ss');
+      });
+  }, []);
+  const date = moment(list.board_date).format("YYYY.MM.DD HH:mm:ss");
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
 
