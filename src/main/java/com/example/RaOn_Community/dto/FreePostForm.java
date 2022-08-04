@@ -2,11 +2,13 @@ package com.example.RaOn_Community.dto;
 
 import com.example.RaOn_Community.entity.FreePost;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
 
 @AllArgsConstructor
+@Setter
 @ToString
 public class FreePostForm {
     private Integer id;

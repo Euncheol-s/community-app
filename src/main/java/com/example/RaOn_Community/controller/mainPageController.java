@@ -1,7 +1,6 @@
 package com.example.RaOn_Community.controller;
 
-import com.example.RaOn_Community.dto.PostForm;
-import com.example.RaOn_Community.dto.UserForm;
+import com.example.RaOn_Community.dto.*;
 import com.example.RaOn_Community.entity.*;
 import com.example.RaOn_Community.repository.*;
 import lombok.extern.slf4j.Slf4j;
@@ -66,15 +65,45 @@ public class mainPageController {
         List<FreePost> free=fr.findAll();
         return free;
     }
+    @PostMapping("/api/freeboard/insert")
+    public void freeBoardPost(FreePostForm free){
+        free.setAuthor("홍길동");
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date date1=new java.sql.Date(time);
+        free.setBoard_date(date1);
+        free.setRecommend(0);
+        fr.save(free.toEntity());
+    }
     @GetMapping("/api/information")
     public List<InformationPost> infromationBoard(){
         List<InformationPost> inform=ir.findAll();
         return inform;
     }
+    @PostMapping("/api/information/insert")
+    public void informationBoardPost(InformationForm inform){
+        inform.setAuthor("홍길동");
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date date1=new java.sql.Date(time);
+        inform.setBoard_date(date1);
+        inform.setRecommend(0);
+        ir.save(inform.toEntity());
+    }
     @GetMapping("/api/market")
     public List<Market> marketBoard(){
         List<Market> market=mr.findAll();
         return market;
+    }
+    @PostMapping("/api/market/insert")
+    public void marketBoardPost(MarketForm market){
+        market.setAuthor("홍길동");
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date date1=new java.sql.Date(time);
+        market.setBoard_date(date1);
+        market.setRecommend(0);
+        mr.save(market.toEntity());
     }
     @GetMapping("/api/sign/{id}")
     public User login(@PathVariable Integer id){
