@@ -4,7 +4,7 @@ import { useState } from "react";
 import Pagination from "../components/Pagination";
 
 function Board() {
-  const id = useParams();
+  const type = useParams();
   const [posts, setPosts] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
@@ -49,7 +49,7 @@ function Board() {
       <div className="container overflow-auto">
         <div className="container mt-5 text-center">
           <h2>
-            {id.id === "1" ? "자유 " : id.id === "2" ? "정보 " : "장터 "}
+            {type.id === "1" ? "자유 " : type.id === "2" ? "정보 " : "장터 "}
             게시판
           </h2>
         </div>
@@ -111,7 +111,7 @@ function Board() {
                     <Link
                       className="text-decoration-none text-reset"
                       id="title"
-                      to={`/notice/detail/${id}`}
+                      to={`/board/${type.id}/detail/${id}`}
                     >
                       {title}
                     </Link>
@@ -157,7 +157,7 @@ function Board() {
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <Link to={`/board/write/${id.id}`} className="btn btn-primary">
+          <Link to={`/board/${type.id}/write`} className="btn btn-primary">
             글 쓰기
           </Link>
         </div>

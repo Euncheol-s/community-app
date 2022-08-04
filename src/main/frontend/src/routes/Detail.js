@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
 import Comment from "../components/Comment";
+import { useState } from "react";
 
 function Detail() {
   const number = useParams();
@@ -17,6 +18,13 @@ function Detail() {
   const recommend = 0;
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
+
+  const isNotice = window.location.pathname.split("/")[1] === "notice";
+  const boardType = window.location.pathname.split("/")[3];
+  const [board, setBoard] = useState("");
+
+  const onEditing = (event) => {};
+  const onDeleting = (event) => {};
 
   return (
     <>
@@ -49,10 +57,18 @@ function Detail() {
             </div>
             {/*본인이 작성한 글이면 보이는 div*/}
             <div className="container d-flex justify-content-end">
-              <button type="button" className="btn btn-primary me-2">
+              <button
+                type="button"
+                className="btn btn-primary me-2"
+                onClick={onEditing}
+              >
                 수정
               </button>
-              <button type="button" className="btn btn-danger">
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={onDeleting}
+              >
                 삭제
               </button>
             </div>
