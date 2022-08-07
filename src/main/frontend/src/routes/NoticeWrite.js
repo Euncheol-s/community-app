@@ -19,15 +19,20 @@ function NoticeWrite() {
     setFiles(event.target.value);
   };
   const onClick = () => {
-    axios({
-      method: "post",
-      url: "http://localhost:8080/api/board/insert",
-      data: {
-        title: { title },
-        content: { contents },
-        //file: {files},
-      },
-    })
+    const formData = new FormData();
+    formData.append(
+      "title",
+      new Blob([JSON.stringify(title)], { type: "application/json" })
+    );
+    formData.append(
+      "content",
+      new Blob([JSON.stringify(contents)], { type: "application/json" })
+    );
+
+    axios
+      .post("http://localhost:8080/api/board/insert", formData, {
+        headers: { "Contest-Type": "multipart/form-data" },
+      })
       .then((res) => {
         console.log(res);
         history.push("/notice");
