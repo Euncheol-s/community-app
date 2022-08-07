@@ -13,9 +13,8 @@ public class CommentForm {
     private String nickname;
     private String com;
     private Date date;
-    private Integer recommend;
-    private Integer notrecommend;
+//    private Integer post_id;
     public Comment toEntity(){
-        return new Comment(id, nickname, com, date, recommend, notrecommend);
+        return new Comment(id, nickname, com, date);
     }
 }

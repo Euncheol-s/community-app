@@ -25,13 +25,18 @@ public class mainPageController {
     private MarketRepository mr;
     @Autowired
     private UserRepository ur;
+    @Autowired
+    private CommentRepository cr;
     private Integer num;
     @GetMapping("/api/board")
     public List<Post> noticeBoard(){
         List<Post> postEntity=pr.findAll();
-        if(postEntity!=null)
-            num = postEntity.get(postEntity.size() - 1).getId();
         return postEntity;
+    }
+    @GetMapping("/api/board/comment")
+    public List<Comment> comments(){
+        List<Comment> commentEntity=cr.findAll();
+        return commentEntity;
     }
     @GetMapping("/api/board/{id}")
     public Post noticeBoardId(@PathVariable Integer id){
@@ -51,7 +56,6 @@ public class mainPageController {
     }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
-        post.setId(num+1);
         post.setAuthor("관리자");
         Date now=new Date();
         long time=now.getTime();
