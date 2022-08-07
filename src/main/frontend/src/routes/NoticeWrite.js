@@ -19,13 +19,19 @@ function NoticeWrite() {
     setFiles(event.target.value);
   };
   const onClick = () => {
-    axios
-      .post("http://localhost:8080/api/board/insert", {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/api/board/insert",
+      data: {
         title: { title },
         content: { contents },
         //file: {files},
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        history.push("/notice");
       })
-      .then(history.push("/notice"))
       .catch((error) => {
         console.log(error);
         history.push("/notice");
