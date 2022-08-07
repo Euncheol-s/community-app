@@ -20,8 +20,7 @@ public class Comment {
     private String com;
     @Column(nullable = false)
     private Date date;
-    @Column(nullable = false)
-    private Integer recommend;
-    @Column(nullable = false)
-    private Integer notrecommend;
+//    @OneToMany
+//    @JoinColumn(table = "post",referencedColumnName = "id")
+//    private Integer post_id;
 }
