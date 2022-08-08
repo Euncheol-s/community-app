@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,12 +26,12 @@ public class mainPageController {
     private MarketRepository mr;
     @Autowired
     private UserRepository ur;
+    @Autowired
+    private CommentRepository cr;
     private Integer num;
     @GetMapping("/api/board")
     public List<Post> noticeBoard(){
         List<Post> postEntity=pr.findAll();
-        if(postEntity!=null)
-            num = postEntity.get(postEntity.size() - 1).getId();
         return postEntity;
     }
     @GetMapping("/api/board/{id}")
@@ -49,9 +50,32 @@ public class mainPageController {
             pr.delete(post);
         }
     }
+    @GetMapping("/api/board/comment")
+    public List<Comment> boardAllComment(){
+        List<Comment> commentEntity=cr.findAll();
+        return commentEntity;
+    }
+    @GetMapping("/api/board/{id}/comment")
+    public List<Comment> boardComment(@PathVariable Integer id){
+        List<Comment> commentEntity=cr.findAll();
+        Post post=pr.findById(id).orElse(null);
+        List<Comment> resultcomment=new ArrayList<Comment>();
+        for(Comment com:commentEntity){
+            if(post.getId()==com.getPost_id().getId())
+                resultcomment.add(com);
+        }
+        return resultcomment;
+    }
+    @PostMapping("/api/board/{id}/comment/insert")
+    public void boardCommentinsert(CommentForm comment){
+
+    }
+    @GetMapping("/api/board/{id}/comment/delete")
+    public void boardCommentDelete(@PathVariable Integer id){
+
+    }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
-        post.setId(num+1);
         post.setAuthor("관리자");
         Date now=new Date();
         long time=now.getTime();

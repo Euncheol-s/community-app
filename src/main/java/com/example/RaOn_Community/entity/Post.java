@@ -1,10 +1,10 @@
 package com.example.RaOn_Community.entity;
 
 import lombok.*;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="post")
@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Post {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(length = 100, nullable = false)
     private String title;
