@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,11 +34,6 @@ public class mainPageController {
         List<Post> postEntity=pr.findAll();
         return postEntity;
     }
-    @GetMapping("/api/board/comment")
-    public List<Comment> comments(){
-        List<Comment> commentEntity=cr.findAll();
-        return commentEntity;
-    }
     @GetMapping("/api/board/{id}")
     public Post noticeBoardId(@PathVariable Integer id){
         Post post=pr.findById(id).orElse(null);
@@ -53,6 +49,22 @@ public class mainPageController {
         if(post!=null){
             pr.delete(post);
         }
+    }
+    @GetMapping("/api/board/comment")
+    public List<Comment> boardAllComment(){
+        List<Comment> commentEntity=cr.findAll();
+        return commentEntity;
+    }
+    @GetMapping("/api/board/{id}/comment")
+    public List<Comment> boardComment(@PathVariable Integer id){
+        List<Comment> commentEntity=cr.findAll();
+        Post post=pr.findById(id).orElse(null);
+        List<Comment> resultcomment=new ArrayList<Comment>();
+        for(Comment com:commentEntity){
+            if(post.getId()==com.getPost_id().getId())
+                resultcomment.add(com);
+        }
+        return resultcomment;
     }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
