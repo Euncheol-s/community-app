@@ -12,12 +12,14 @@ function Comment() {
     });
   }, []);
 
-  const author = "author";
-  const board_date = "yyyy. mm. dd. AM hh:mm:ss";
-  const contents = "contents";
+  const [contents, setContents] = useState("");
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
   const history = useHistory();
+
+  const onChangeContents = (event) => {
+    setContents(event.target.value);
+  };
   const onCreating = () => {
     axios
       .post("http://localhost:8080/api/comment/insert", {})
@@ -68,7 +70,11 @@ function Comment() {
           placeholder="Leave a comment here"
           id="floatingTextarea2"
           style={{ height: "100px" }}
-        ></textarea>
+          value={contents}
+          onChange={onChangeContents}
+        >
+          {contents}
+        </textarea>
         <label htmlFor="floatingTextarea2">Comments</label>
       </div>
       <div className="container d-flex justify-content-end">
