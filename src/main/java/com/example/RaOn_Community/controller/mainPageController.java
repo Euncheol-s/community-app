@@ -66,6 +66,14 @@ public class mainPageController {
         }
         return resultcomment;
     }
+    @PostMapping("/api/board/{id}/comment/insert")
+    public void boardCommentinsert(CommentForm comment){
+
+    }
+    @GetMapping("/api/board/{id}/comment/delete")
+    public void boardCommentDelete(@PathVariable Integer id){
+
+    }
     @PostMapping("/api/board/insert")
     public void softwarePost(PostForm post) {
         post.setAuthor("관리자");
