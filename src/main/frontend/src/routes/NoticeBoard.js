@@ -38,7 +38,7 @@ function NoticeBoard() {
   ];*/
   useEffect(() => {
     axios.get("http://localhost:8080/api/board").then((response) => {
-        setPosts(response.data);
+      setPosts(response.data);
     });
   }, []);
   return (
