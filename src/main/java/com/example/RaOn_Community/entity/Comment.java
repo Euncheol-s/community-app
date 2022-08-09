@@ -20,9 +20,9 @@ public class Comment {
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "nick",
-            referencedColumnName = "nickname",
+            referencedColumnName = "id",
             foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
-    private User nick;
+    private User nickname;
     @Column(length = 150, nullable = false)
     private String com;
     @Column(nullable = false)

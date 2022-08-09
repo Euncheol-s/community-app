@@ -4,8 +4,11 @@ import com.example.RaOn_Community.dto.CommentForm;
 import com.example.RaOn_Community.dto.PostForm;
 import com.example.RaOn_Community.entity.Comment;
 import com.example.RaOn_Community.entity.Post;
+import com.example.RaOn_Community.entity.User;
 import com.example.RaOn_Community.repository.CommentRepository;
 import com.example.RaOn_Community.repository.PostRepository;
+import com.example.RaOn_Community.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +17,14 @@ import java.util.Date;
 import java.util.List;
 @RestController
 @RequestMapping("/api/board")
+@Slf4j
 public class noticeBoardController {
     @Autowired
     private PostRepository pr;
     @Autowired
     private CommentRepository cr;
+    @Autowired
+    private UserRepository ur;
     @GetMapping("")
     public List<Post> noticeBoard(){
         List<Post> postEntity=pr.findAll();
@@ -67,8 +73,17 @@ public class noticeBoardController {
         return resultcomment;
     }
     @PostMapping("/{id}/comment/insert")
-    public void boardCommentinsert(CommentForm comment){
-
+    public void boardCommentinsert(CommentForm comment, @PathVariable Integer id){
+        User user=ur.findById(1).orElse(null);
+        comment.setNick(user);
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date date=new java.sql.Date(time);
+        comment.setDate(date);
+        Post post=pr.findById(id).orElse(null);
+        comment.setPost_id(post);
+        log.info(comment.toString());
+        cr.save(comment.toEntity());
     }
     @GetMapping("/{id}/comment/delete")
     public void boardCommentDelete(@PathVariable Integer id){

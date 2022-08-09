@@ -14,11 +14,11 @@ import java.util.Date;
 @Setter
 public class CommentForm {
     private Integer id;
-    private User nickname;
+    private User nick;
     private String com;
     private Date date;
     private Post post_id;
     public Comment toEntity(){
-        return new Comment(id, nickname, com, date, post_id);
+        return new Comment(id, nick, com, date, post_id);
     }
 }
