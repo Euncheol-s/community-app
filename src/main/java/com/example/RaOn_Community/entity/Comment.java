@@ -18,8 +18,11 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(length = 10, nullable = false)
-    private String nickname;
+    @ManyToOne
+    @JoinColumn(name = "nick",
+            referencedColumnName = "nickname",
+            foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
+    private User nick;
     @Column(length = 150, nullable = false)
     private String com;
     @Column(nullable = false)

@@ -33,7 +33,7 @@ function Comment() {
       {/*작성된 댓글을 보여주는 부분*/}
       <div className="container">
         <h4>Comment</h4>
-        {list.map(({ nickname, com, date }) => (
+        {list.map(({ nick, com, date }) => (
           <div>
             <div className="container d-flex mt-3">
               <img
@@ -46,7 +46,7 @@ function Comment() {
                 }}
               />
               <div className="container d-flex flex-column">
-                <b>{nickname}</b>
+                <b>{nick}</b>
                 <p>{com}</p>
                 <span>{moment(date).format("YYYY.MM.DD HH:mm:ss")}</span>
               </div>
