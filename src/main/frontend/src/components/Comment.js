@@ -23,7 +23,7 @@ function Comment() {
   };
   const onCreating = () => {
     axios
-      .post("http://localhost:8080/api/comment/insert", {})
+      .post(`http://localhost:8080/api/board/${id.id}/comment/insert`, {})
       .then(history.push(window.location.pathname));
   };
   const onDeleting = () => {};
@@ -46,7 +46,7 @@ function Comment() {
                 }}
               />
               <div className="container d-flex flex-column">
-                <b>{nickname}</b>
+                <b>{nickname.nickname}</b>
                 <p>{com}</p>
                 <span>{moment(date).format("YYYY.MM.DD HH:mm:ss")}</span>
               </div>
