@@ -1,17 +1,18 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
 function Comment() {
-  const [posts, setPosts] = useState([]);
-
+  const id = useParams();
+  const [list, setList] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/board").then((response) => {
-      setPosts(response.data);
-    });
+      axios
+        .get(`http://localhost:8080/api/board/${id.id}/comment`)
+        .then((response) => {
+          setList(response.data);
+        });
   }, []);
-
   const [contents, setContents] = useState("");
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
@@ -32,7 +33,7 @@ function Comment() {
       {/*작성된 댓글을 보여주는 부분*/}
       <div className="container">
         <h4>Comment</h4>
-        {posts.map(({ author, contents, board_date }) => (
+        {list.map(({ nick, com, date }) => (
           <div>
             <div className="container d-flex mt-3">
               <img
@@ -45,9 +46,9 @@ function Comment() {
                 }}
               />
               <div className="container d-flex flex-column">
-                <b>{author}</b>
-                <p>{contents}</p>
-                <span>{moment(board_date).format("YYYY.MM.DD HH:mm:ss")}</span>
+                <b>{nick}</b>
+                <p>{com}</p>
+                <span>{moment(date).format("YYYY.MM.DD HH:mm:ss")}</span>
               </div>
             </div>
             <div className="container d-flex justify-content-end">
