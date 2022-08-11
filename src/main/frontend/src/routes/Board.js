@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
 import axios from "axios";
+import moment from "moment";
 
 function Board() {
   const type = useParams();
@@ -12,44 +13,18 @@ function Board() {
   const [board, setBoard] = useState("");
   const offset = (page - 1) * limit;
 
-  /*const obj = [
-    {
-      id: 1,
-      title: "안녕하세요.",
-      content: "반갑습니다.",
-      author: "홍길동",
-      board_date: "2022-07-20",
-      recommend: 0,
-    },
-    {
-      id: 2,
-      title: "질문이 있습니다.",
-      content: "안녕",
-      author: "홍길동",
-      board_date: "2022-07-20",
-      recommend: 0,
-    },
-    {
-      id: 3,
-      title: "님들 그거 암?",
-      content: "미안하다, 어그로 좀 끌어봤다.",
-      author: "홍길동",
-      board_date: "2022-07-20",
-      recommend: 0,
-    },
-  ];*/
   useEffect(() => {
-        type.id === "1"
-          ? axios.get("http://localhost:8080/api/freeboard").then((response) => {
-                    setPosts(response.data);
-            })
-          : type.id === "2"
-          ? axios.get("http://localhost:8080/api/information").then((response) => {
-                                setPosts(response.data);
-            })
-          : axios.get("http://localhost:8080/api/market").then((response) => {
-                                            setPosts(response.data);
-            });
+    type.id === "1"
+      ? axios.get("http://localhost:8080/api/freeboard").then((response) => {
+          setPosts(response.data);
+        })
+      : type.id === "2"
+      ? axios.get("http://localhost:8080/api/information").then((response) => {
+          setPosts(response.data);
+        })
+      : axios.get("http://localhost:8080/api/market").then((response) => {
+          setPosts(response.data);
+        });
   }, []);
 
   return (
@@ -109,33 +84,6 @@ function Board() {
             </tr>
           </thead>
           <tbody>
-            {/*obj
-              .slice(offset, offset + limit)
-              .map(({ id, title, author, board_date, recommend }) => (
-                <tr key={id}>
-                  <td className="col-1 text-center" id="number">
-                    {id}
-                  </td>
-                  <td className="col-5 ">
-                    <Link
-                      className="text-decoration-none text-reset"
-                      id="title"
-                      to={`/board/${type.id}/detail/${id}`}
-                    >
-                      {title}
-                    </Link>
-                  </td>
-                  <td className="col-2 text-center" id="author">
-                    {author}
-                  </td>
-                  <td className="col-2 text-center" id="board_date">
-                    {board_date}
-                  </td>
-                  <td className="col-2 text-center" id="recommend">
-                    {recommend}
-                  </td>
-                </tr>
-              ))*/}
             {posts
               .slice(offset, offset + limit)
               .map(({ id, title, author, board_date, recommend }) => (
@@ -156,7 +104,7 @@ function Board() {
                     {author}
                   </td>
                   <td className="col-2 text-center" id="board_date">
-                    {board_date}
+                    {moment(board_date).format("YYYY.MM.DD HH:mm:ss")}
                   </td>
                   <td className="col-2 text-center" id="recommend">
                     {recommend}
@@ -170,19 +118,13 @@ function Board() {
             글 쓰기
           </Link>
         </div>
-        {/*<Pagination
-          total={obj.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />*/}
         {
-        <Pagination
-          total={posts.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />
+          <Pagination
+            total={posts.length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
         }
       </div>
     </>
