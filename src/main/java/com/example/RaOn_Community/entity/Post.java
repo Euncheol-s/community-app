@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(length = 100, nullable = false)
     private String title;
