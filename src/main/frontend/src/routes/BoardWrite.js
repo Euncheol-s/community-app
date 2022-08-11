@@ -82,6 +82,7 @@ function BoardWrite() {
             name="content"
             rows="3"
             onChange={onChangeContents}
+            value={contents}
           >
             {contents}
           </textarea>

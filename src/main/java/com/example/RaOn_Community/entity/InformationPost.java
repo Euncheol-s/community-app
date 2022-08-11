@@ -16,7 +16,6 @@ import java.util.Date;
 @ToString
 public class InformationPost {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(length = 100, nullable = false)
     private String title;

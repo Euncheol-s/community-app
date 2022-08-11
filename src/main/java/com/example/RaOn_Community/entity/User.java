@@ -15,7 +15,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(length = 10, nullable = false)
     private String nickname;

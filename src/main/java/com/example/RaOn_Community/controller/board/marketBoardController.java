@@ -14,15 +14,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/market")
 public class marketBoardController {
+    private Integer num_Id=0;
     @Autowired
     private MarketRepository mr;
     @GetMapping("")
     public List<Market> marketBoard(){
         List<Market> market=mr.findAll();
+        if(market.size()>0)
+            num_Id=market.get(market.size()-1).getId();
         return market;
     }
     @PostMapping("/insert")
     public void marketBoardPost(MarketForm market){
+        market.setId(num_Id+1);
         market.setAuthor("홍길동");
         Date now=new Date();
         long time=now.getTime();

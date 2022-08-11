@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/api/board")
 @Slf4j
 public class noticeBoardController {
+    private Integer num_postId=0;
     @Autowired
     private PostRepository pr;
     @Autowired
@@ -28,6 +29,8 @@ public class noticeBoardController {
     @GetMapping("")
     public List<Post> noticeBoard(){
         List<Post> postEntity=pr.findAll();
+        if(postEntity.size()>0)
+            num_postId=postEntity.get(postEntity.size()-1).getId();
         return postEntity;
     }
     @GetMapping("/{id}")
@@ -48,6 +51,7 @@ public class noticeBoardController {
     }
     @PostMapping("/insert")
     public void softwarePost(PostForm post) {
+        post.setId(num_postId+1);
         post.setAuthor("관리자");
         Date now=new Date();
         long time=now.getTime();
