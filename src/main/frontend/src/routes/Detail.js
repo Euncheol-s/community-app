@@ -17,15 +17,13 @@ function Detail() {
   */
   const [list, setList] = useState([]);
   const [isNotice, setIsNotice] = useState(false);
-  const [boardType, setBoardType] = useState("");
   const [board, setBoard] = useState("");
 
   useEffect(() => {
     setIsNotice(window.location.pathname.split("/")[1] === "notice");
-    setBoardType(window.location.pathname.split("/")[4]);
     setBoard(()=> {
-       if(boardType === "1") {return "freeboard";}
-       else if(boardType === "2") {return "information";}
+       if(number.type === "1") {return "freeboard";}
+       else if(number.type === "2") {return "information";}
        else {return "market";}
     });
     console.log(isNotice);
@@ -34,45 +32,41 @@ function Detail() {
           .get(`http://localhost:8080/api/board/${number.id}`)
           .then((response) => {
             setList(response.data);
-        });
+          }).catch((err) => {
+            console.log(err);
+          });
     } else {
         axios
             .get(`http://localhost:8080/api/${board}/${number.id}`)
             .then((response) => {
                 setList(response.data)
+            }).catch((err) => {
+                console.log(err);
         });
     }
-  }, [boardType]);
+  }, [board]);
   const date = moment(list.board_date).format("YYYY.MM.DD HH:mm:ss");
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
 
   const onEditing = (event) => {};
-<<<<<<< HEAD
   const onDeleting = (event) => {
     if(isNotice) {
-        axios.get(`/api/board/${number.id}/delete`)
+        axios.get(`http://localhost:8080/api/board/${number.id}/delete`)
         .then(history.push("/notice"))
         .catch((err) => {
             console.log(err);
-            history.push("/notice")
+            history.push("/notice");
         });
-        }
-    };
-=======
-  const onDeleting = () => {
-    axios
-      .get(`http://localhost:8080/api/board/${number.id}/delete`)
-      .then((res) => {
-        console.log(res);
-        history.push("/notice");
-      })
-      .catch((error) => {
-        console.log(error);
-        history.push("/notice");
-      });
+    }else {
+        axios.get(`http://localhost:8080/api/${board}/${number.id}/delete`)
+        .then(history.push("/board/" + number.type))
+        .catch((err) => {
+            console.log(err);
+            history.push("/board/" + number.type)
+        })
+    }
   };
->>>>>>> f20d88759fa9f2d97f3f5d43a1ae0139d2540b56
 
   return (
     <>
