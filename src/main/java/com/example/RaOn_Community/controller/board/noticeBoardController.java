@@ -20,6 +20,7 @@ import java.util.List;
 @Slf4j
 public class noticeBoardController {
     private Integer num_postId=0;
+    private Integer num_commentId=0;
     @Autowired
     private PostRepository pr;
     @Autowired
@@ -42,7 +43,7 @@ public class noticeBoardController {
     public void noticeBoardEdit(@PathVariable Integer id){
         Post post=pr.findById(id).orElse(null);
     }
-    @GetMapping("/api/board/{id}/delete")
+    @GetMapping("/{id}/delete")
     public void noticeBoardDelete(@PathVariable Integer id){
         Post post=pr.findById(id).orElse(null);
         if(post!=null){
@@ -66,7 +67,7 @@ public class noticeBoardController {
         return commentEntity;
     }
     @GetMapping("/{id}/comment")
-    public List<Comment> boardComment(@PathVariable Integer id){
+    public List<Comment> boardComments(@PathVariable Integer id){
         List<Comment> commentEntity=cr.findAll();
         Post post=pr.findById(id).orElse(null);
         List<Comment> resultcomment=new ArrayList<Comment>();
@@ -78,6 +79,10 @@ public class noticeBoardController {
     }
     @PostMapping("/{id}/comment/insert")
     public void boardCommentinsert(CommentForm comment, @PathVariable Integer id){
+        List<Comment> commentEntity=cr.findAll();
+        if(commentEntity.size()>0)
+            num_commentId = commentEntity.get(commentEntity.size() - 1).getId();
+        comment.setId(num_commentId+1);
         User user=ur.findById(1).orElse(null);
         comment.setNick(user);
         Date now=new Date();
@@ -89,8 +94,15 @@ public class noticeBoardController {
         log.info(comment.toString());
         cr.save(comment.toEntity());
     }
-    @GetMapping("/{id}/comment/delete")
+    @GetMapping("/comment/{id}")
+    public Comment boardComment(@PathVariable Integer id){
+        Comment comment=cr.findById(id).orElse(null);
+        return comment;
+    }
+    @GetMapping("/comment/{id}/delete")
     public void boardCommentDelete(@PathVariable Integer id){
-
+        Comment comment=cr.findById(id).orElse(null);
+        if(comment!=null)
+            cr.delete(comment);
     }
 }

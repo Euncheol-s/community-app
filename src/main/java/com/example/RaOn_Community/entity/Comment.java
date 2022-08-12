@@ -16,7 +16,6 @@ import java.util.Date;
 @Getter
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "nick",

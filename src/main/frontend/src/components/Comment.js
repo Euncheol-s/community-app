@@ -4,11 +4,11 @@ import axios from "axios";
 import moment from "moment";
 
 function Comment() {
-  const id = useParams();
+  const number = useParams();
   const [list, setList] = useState([]);
   useEffect(() => {
       axios
-        .get(`http://localhost:8080/api/board/${id.id}/comment`)
+        .get(`http://localhost:8080/api/board/${number.id}/comment`)
         .then((response) => {
           setList(response.data);
         });
@@ -22,18 +22,18 @@ function Comment() {
     setContents(event.target.value);
   };
   const onCreating = () => {
+    const formData = new FormData();
+    formData.append("com", contents);
     axios
-      .post(`http://localhost:8080/api/board/${id.id}/comment/insert`, {})
-      .then(history.push(window.location.pathname));
+      .post(`http://localhost:8080/api/board/${number.id}/comment/insert`, formData)
+      .then(history.push(window.location.reload()));
   };
-  const onDeleting = () => {};
-
   return (
     <>
       {/*작성된 댓글을 보여주는 부분*/}
       <div className="container">
         <h4>Comment</h4>
-        {list.map(({ nickname, com, date }) => (
+        {list.map(({ id, nickname, com, date }) => (
           <div>
             <div className="container d-flex mt-3">
               <img
@@ -55,7 +55,18 @@ function Comment() {
               <button
                 type="button"
                 className="btn btn-danger"
-                onClick={onDeleting}
+                onClick={() => {
+                    axios
+                      .get(`http://localhost:8080/api/board/comment/${id}/delete`)
+                      .then((res) => {
+                        console.log(res);
+                        history.push(window.location.reload());
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                        history.push(window.location.reload());
+                      });
+                }}
               >
                 삭제
               </button>

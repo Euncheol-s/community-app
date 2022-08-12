@@ -1,5 +1,5 @@
 import NavBar from "../components/NavBar";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import Comment from "../components/Comment";
 import { useState, useEffect } from "react";
@@ -8,6 +8,7 @@ import moment from "moment";
 
 function Detail() {
   const number = useParams();
+  const history = useHistory();
   /*
      글 번호를 url로 넘겨 받아 데이터베이스에서 해당 글 번호에 대한 디테일 페이지를 보여줌
      파일이 있는데 이미지 파일이면 이미지를 보여주고 이미지 파일이 아닌 그 외에 파일이면 다운로드로 나타냄
@@ -31,7 +32,18 @@ function Detail() {
   const [board, setBoard] = useState("");
 
   const onEditing = (event) => {};
-  const onDeleting = (event) => {};
+  const onDeleting = () => {
+    axios
+      .get(`http://localhost:8080/api/board/${number.id}/delete`)
+      .then((res) => {
+        console.log(res);
+        history.push("/notice");
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push("/notice");
+      });
+  };
 
   return (
     <>
