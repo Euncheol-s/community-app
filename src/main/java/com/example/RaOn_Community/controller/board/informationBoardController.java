@@ -1,13 +1,11 @@
 package com.example.RaOn_Community.controller.board;
 
 import com.example.RaOn_Community.dto.InformationForm;
+import com.example.RaOn_Community.entity.FreePost;
 import com.example.RaOn_Community.entity.InformationPost;
 import com.example.RaOn_Community.repository.InformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -35,5 +33,17 @@ public class informationBoardController {
         inform.setBoard_date(date1);
         inform.setRecommend(0);
         ir.save(inform.toEntity());
+    }
+    @GetMapping("/{id}")
+    public InformationPost informationBoardId(@PathVariable Integer id){
+        InformationPost inform=ir.findById(id).orElse(null);
+        return inform;
+    }
+    @GetMapping("/{id}/delete")
+    public void informationBoardDelete(@PathVariable Integer id){
+        InformationPost inform = ir.findById(id).orElse(null);
+        if(inform!=null){
+            ir.delete(inform);
+        }
     }
 }

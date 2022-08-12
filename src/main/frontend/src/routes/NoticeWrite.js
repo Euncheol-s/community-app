@@ -79,7 +79,6 @@ function NoticeWrite() {
             onChange={onChangeContents}
             value={contents}
           >
-            {contents}
           </textarea>
         </div>
         <div className="d-flex justify-content-end">

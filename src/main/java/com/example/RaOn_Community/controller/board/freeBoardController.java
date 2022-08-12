@@ -2,12 +2,10 @@ package com.example.RaOn_Community.controller.board;
 
 import com.example.RaOn_Community.dto.FreePostForm;
 import com.example.RaOn_Community.entity.FreePost;
+import com.example.RaOn_Community.entity.Post;
 import com.example.RaOn_Community.repository.FreePostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -35,5 +33,17 @@ public class freeBoardController {
         free.setBoard_date(date1);
         free.setRecommend(0);
         fr.save(free.toEntity());
+    }
+    @GetMapping("/{id}")
+    public FreePost freeBoardId(@PathVariable Integer id){
+        FreePost free=fr.findById(id).orElse(null);
+        return free;
+    }
+    @GetMapping("/{id}/delete")
+    public void freeBoardDelete(@PathVariable Integer id){
+        FreePost free = fr.findById(id).orElse(null);
+        if(free!=null){
+            fr.delete(free);
+        }
     }
 }

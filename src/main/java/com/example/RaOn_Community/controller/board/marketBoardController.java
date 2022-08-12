@@ -1,13 +1,12 @@
 package com.example.RaOn_Community.controller.board;
 
 import com.example.RaOn_Community.dto.MarketForm;
+import com.example.RaOn_Community.entity.FreePost;
+import com.example.RaOn_Community.entity.InformationPost;
 import com.example.RaOn_Community.entity.Market;
 import com.example.RaOn_Community.repository.MarketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -34,5 +33,17 @@ public class marketBoardController {
         market.setBoard_date(date1);
         market.setRecommend(0);
         mr.save(market.toEntity());
+    }
+    @GetMapping("/{id}")
+    public Market marketBoardId(@PathVariable Integer id){
+        Market market=mr.findById(id).orElse(null);
+        return market;
+    }
+    @GetMapping("/{id}/delete")
+    public void marketBoardDelete(@PathVariable Integer id){
+        Market market = mr.findById(id).orElse(null);
+        if(market!=null){
+            mr.delete(market);
+        }
     }
 }
