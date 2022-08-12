@@ -39,7 +39,7 @@ public class noticeBoardController {
     public void noticeBoardEdit(@PathVariable Integer id){
         Post post=pr.findById(id).orElse(null);
     }
-    @GetMapping("/api/board/{id}/delete")
+    @GetMapping("/{id}/delete")
     public void noticeBoardDelete(@PathVariable Integer id){
         Post post=pr.findById(id).orElse(null);
         if(post!=null){

@@ -1,5 +1,5 @@
 import NavBar from "../components/NavBar";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import Comment from "../components/Comment";
 import { useState, useEffect } from "react";
@@ -8,6 +8,7 @@ import moment from "moment";
 
 function Detail() {
   const number = useParams();
+  const history = useHistory();
   /*
      글 번호를 url로 넘겨 받아 데이터베이스에서 해당 글 번호에 대한 디테일 페이지를 보여줌
      파일이 있는데 이미지 파일이면 이미지를 보여주고 이미지 파일이 아닌 그 외에 파일이면 다운로드로 나타냄
@@ -15,23 +16,48 @@ function Detail() {
      예외적으로 관리자 등급을 갖고 있는 사용자는 삭제 가능하도록.
   */
   const [list, setList] = useState([]);
+  const [isNotice, setIsNotice] = useState(false);
+  const [boardType, setBoardType] = useState("");
+  const [board, setBoard] = useState("");
+
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/board/${number.id}`)
-      .then((response) => {
-        setList(response.data);
-      });
-  }, []);
+    setIsNotice(window.location.pathname.split("/")[1] === "notice");
+    setBoardType(window.location.pathname.split("/")[4]);
+    setBoard(()=> {
+       if(boardType === "1") {return "freeboard";}
+       else if(boardType === "2") {return "information";}
+       else {return "market";}
+    });
+    console.log(isNotice);
+    if(isNotice) {
+        axios
+          .get(`http://localhost:8080/api/board/${number.id}`)
+          .then((response) => {
+            setList(response.data);
+        });
+    } else {
+        axios
+            .get(`http://localhost:8080/api/${board}/${number.id}`)
+            .then((response) => {
+                setList(response.data)
+        });
+    }
+  }, [boardType]);
   const date = moment(list.board_date).format("YYYY.MM.DD HH:mm:ss");
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
 
-  const isNotice = window.location.pathname.split("/")[1] === "notice";
-  const boardType = window.location.pathname.split("/")[3];
-  const [board, setBoard] = useState("");
-
   const onEditing = (event) => {};
-  const onDeleting = (event) => {};
+  const onDeleting = (event) => {
+    if(isNotice) {
+        axios.get(`/api/board/${number.id}/delete`)
+        .then(history.push("/notice"))
+        .catch((err) => {
+            console.log(err);
+            history.push("/notice")
+        });
+        }
+    };
 
   return (
     <>
@@ -50,7 +76,7 @@ function Detail() {
                   style={{
                     width: "50px",
                     height: "50px",
-                    "border-radius": "50%",
+                    "borderRadius": "50%",
                   }}
                 ></img>
                 <div className="container d-flex flex-column">
