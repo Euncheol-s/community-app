@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "informationcomment")
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Getter
-public class Comment {
+public class InformationComment {
     @Id
     private Integer id;
     @ManyToOne
@@ -27,8 +27,8 @@ public class Comment {
     @Column(nullable = false)
     private Date date;
     @ManyToOne
-    @JoinColumn(name = "post_id",
+    @JoinColumn(name = "information_id",
             referencedColumnName = "id",
             foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
-    private Post post_id;
+    private InformationPost information_id;
 }
