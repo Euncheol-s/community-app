@@ -15,15 +15,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/information")
 public class informationBoardController {
+    private Integer num_Id=0;
     @Autowired
     private InformationRepository ir;
     @GetMapping("")
     public List<InformationPost> infromationBoard(){
         List<InformationPost> inform=ir.findAll();
+        if(inform.size()>0)
+            num_Id=inform.get(inform.size()-1).getId();
         return inform;
     }
     @PostMapping("/insert")
     public void informationBoardPost(InformationForm inform){
+        inform.setId(num_Id+1);
         inform.setAuthor("홍길동");
         Date now=new Date();
         long time=now.getTime();

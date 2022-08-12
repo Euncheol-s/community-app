@@ -48,6 +48,7 @@ function Detail() {
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
 
   const onEditing = (event) => {};
+<<<<<<< HEAD
   const onDeleting = (event) => {
     if(isNotice) {
         axios.get(`/api/board/${number.id}/delete`)
@@ -58,6 +59,20 @@ function Detail() {
         });
         }
     };
+=======
+  const onDeleting = () => {
+    axios
+      .get(`http://localhost:8080/api/board/${number.id}/delete`)
+      .then((res) => {
+        console.log(res);
+        history.push("/notice");
+      })
+      .catch((error) => {
+        console.log(error);
+        history.push("/notice");
+      });
+  };
+>>>>>>> f20d88759fa9f2d97f3f5d43a1ae0139d2540b56
 
   return (
     <>

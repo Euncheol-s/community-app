@@ -13,11 +13,11 @@ import java.util.Date;
 public class FreePostForm {
     private Integer id;
     private String title;
-    private String author;
     private String content;
+    private String author;
     private Date board_date;
     private Integer recommend;
     public FreePost toEntity(){
-        return new FreePost(id, title, author, content, board_date, recommend);
+        return new FreePost(id, title, content, author, board_date, recommend);
     }
 }
