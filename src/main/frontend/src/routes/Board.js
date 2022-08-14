@@ -92,13 +92,13 @@ function Board() {
                     {id}
                   </td>
                   <td className="col-5 ">
-                    <Link
+                    <a
                       className="text-decoration-none text-reset"
                       id="title"
-                      to={`/board/${type.id}/detail/${id}`}
+                      href={`/board/${type.id}/detail/${id}`}
                     >
                       {title}
-                    </Link>
+                    </a>
                   </td>
                   <td className="col-2 text-center" id="author">
                     {author}
@@ -114,9 +114,9 @@ function Board() {
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <Link to={`/board/${type.id}/write`} className="btn btn-primary">
+          <a href={`/board/${type.id}/write`} className="btn btn-primary">
             글 쓰기
-          </Link>
+          </a>
         </div>
         {
           <Pagination
