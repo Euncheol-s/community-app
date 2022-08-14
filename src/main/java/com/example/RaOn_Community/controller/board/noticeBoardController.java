@@ -32,6 +32,8 @@ public class noticeBoardController {
         List<Post> postEntity=pr.findAll();
         if(postEntity.size()>0)
             num_postId=postEntity.get(postEntity.size()-1).getId();
+        else
+            num_postId=0;
         return postEntity;
     }
     @GetMapping("/{id}")
@@ -82,6 +84,8 @@ public class noticeBoardController {
         List<Comment> commentEntity=cr.findAll();
         if(commentEntity.size()>0)
             num_commentId = commentEntity.get(commentEntity.size() - 1).getId();
+        else
+            num_commentId=0;
         comment.setId(num_commentId+1);
         User user=ur.findById(1).orElse(null);
         comment.setNick(user);

@@ -34,7 +34,7 @@ function Comment() {
       <div className="container">
         <h4>Comment</h4>
         {list.map(({ id, nickname, com, date }) => (
-          <div key={id}>
+          <div>
             <div className="container d-flex mt-3">
               <img
                 src={userImage}
@@ -46,7 +46,7 @@ function Comment() {
                 }}
               />
               <div className="container d-flex flex-column">
-                <b>{nickname}</b>
+                <b>{nickname.nickname}</b>
                 <p>{com}</p>
                 <span>{moment(date).format("YYYY.MM.DD HH:mm:ss")}</span>
               </div>
