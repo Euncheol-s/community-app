@@ -100,9 +100,9 @@ function NoticeBoard() {
           </tbody>
         </table>
         <div className="d-flex justify-content-end">
-          <a href="/notice/write" className="btn btn-primary">
+          <Link to="/notice/write" className="btn btn-primary">
             글 쓰기
-          </a>
+          </Link>
         </div>
         <Pagination
           total={posts.length}
