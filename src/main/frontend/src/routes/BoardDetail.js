@@ -1,14 +1,23 @@
 import NavBar from "../components/NavBar";
 import { useParams, useHistory } from "react-router-dom";
 
-import Comment from "../components/Comment";
+import BoardComment from "../components/BoardComment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
-function Detail() {
+function BoardDetail() {
   const number = useParams();
   const history = useHistory();
+
+  const boardType = window.location.pathname.split("/")[2];
+  let board = "";
+
+  if(boardType === "1") board = "freeboard";
+  else if (boardType === "2") board = "information";
+  else board = "market";
+
+    console.log(boardType, board);
   /*
      글 번호를 url로 넘겨 받아 데이터베이스에서 해당 글 번호에 대한 디테일 페이지를 보여줌
      파일이 있는데 이미지 파일이면 이미지를 보여주고 이미지 파일이 아닌 그 외에 파일이면 다운로드로 나타냄
@@ -18,7 +27,7 @@ function Detail() {
   const [list, setList] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/board/${number.id}`)
+      .get(`http://localhost:8080/api/${board}/${number.id}`)
       .then((response) => {
         setList(response.data);
       });
@@ -30,14 +39,14 @@ function Detail() {
   const onEditing = (event) => {};
   const onDeleting = () => {
     axios
-      .get(`http://localhost:8080/api/board/${number.id}/delete`)
+      .get(`http://localhost:8080/api/${board}/${number.id}/delete`)
       .then((res) => {
         console.log(res);
-        history.push("/notice");
+        history.push("/board/" + number.type);
       })
       .catch((error) => {
         console.log(error);
-        history.push("/notice");
+        history.push("/board/" + number.type);
       });
   };
 
@@ -92,7 +101,7 @@ function Detail() {
               <p className="card-text">{list.content}</p>
             </div>
             <hr />
-            <Comment />
+            <BoardComment />
           </div>
         </div>
       </div>
@@ -100,4 +109,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default BoardDetail;
