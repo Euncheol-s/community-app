@@ -3,12 +3,19 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 
-function Comment() {
+function BoardComment() {
   const number = useParams();
   const [list, setList] = useState([]);
+  const boardType = window.location.pathname.split("/")[2];
+  let board = "";
+
+  if(boardType === "1") board = "freeboard";
+  else if (boardType === "2") board = "information";
+  else board = "market";
+
   useEffect(() => {
       axios
-        .get(`http://localhost:8080/api/board/${number.id}/comment`)
+        .get(`http://localhost:8080/api/${board}/${number.id}/${board}comment`)
         .then((response) => {
           setList(response.data);
         });
@@ -25,7 +32,7 @@ function Comment() {
     const formData = new FormData();
     formData.append("com", contents);
     axios
-      .post(`http://localhost:8080/api/board/${number.id}/comment/insert`, formData)
+      .post(`http://localhost:8080/api/${board}/${number.id}/${board}comment/insert`, formData)
       .then(history.push(window.location.reload()));
   };
   return (
@@ -57,7 +64,7 @@ function Comment() {
                 className="btn btn-danger"
                 onClick={() => {
                     axios
-                      .get(`http://localhost:8080/api/board/comment/${id}/delete`)
+                      .get(`http://localhost:8080/api/${board}/${board}comment/${id}/delete`)
                       .then((res) => {
                         console.log(res);
                         history.push(window.location.reload());
@@ -102,4 +109,4 @@ function Comment() {
   );
 }
 
-export default Comment;
+export default BoardComment;

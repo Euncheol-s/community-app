@@ -10,6 +10,7 @@ import CreateAccount from "./routes/CreateAccount";
 import BoardWrite from "./routes/BoardWrite";
 import NoticeWrite from "./routes/NoticeWrite";
 import Detail from "./routes/Detail";
+import BoardDetail from "./routes/BoardDetail"
 import CouncilInfo from "./routes/CouncilInfo";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/board/:type/detail/:id">
-          <Detail />
+          <BoardDetail />
         </Route>
         <Route path="/notice/detail/:id">
           <Detail />
