@@ -29,7 +29,7 @@ public class marketBoardController {
         if(market.size()>0)
             num_Id=market.get(market.size()-1).getId();
         else
-            commentNum_Id=0;
+            num_Id=0;
         return market;
     }
     @GetMapping("/{id}")
