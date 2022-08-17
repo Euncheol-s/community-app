@@ -34,7 +34,8 @@ function BoardWrite() {
     formData.append("content", contents);
     axios
       .post(`http://localhost:8080/api/${board}/insert`, formData)
-      .then(history.push("/board/" + type.id))
+      .then(history.push("/board/" + type.id),
+            window.location.reload())
       .catch((error) => {
         console.log(error);
         history.push("/board/" + type.id);
