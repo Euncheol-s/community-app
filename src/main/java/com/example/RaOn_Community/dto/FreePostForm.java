@@ -1,6 +1,6 @@
 package com.example.RaOn_Community.dto;
 
-import com.example.RaOn_Community.entity.FreePost;
+import com.example.RaOn_Community.domain.entity.FreePost;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;

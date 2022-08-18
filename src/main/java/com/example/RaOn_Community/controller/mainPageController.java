@@ -1,8 +1,8 @@
 package com.example.RaOn_Community.controller;
 
 import com.example.RaOn_Community.dto.UserForm;
-import com.example.RaOn_Community.entity.User;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.domain.entity.User;
+import com.example.RaOn_Community.domain.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

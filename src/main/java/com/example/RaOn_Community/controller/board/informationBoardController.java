@@ -2,12 +2,12 @@ package com.example.RaOn_Community.controller.board;
 
 import com.example.RaOn_Community.dto.InformationCommentForm;
 import com.example.RaOn_Community.dto.InformationForm;
-import com.example.RaOn_Community.entity.InformationComment;
-import com.example.RaOn_Community.entity.InformationPost;
-import com.example.RaOn_Community.entity.User;
-import com.example.RaOn_Community.repository.InformationCommentRepository;
-import com.example.RaOn_Community.repository.InformationRepository;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.domain.entity.InformationComment;
+import com.example.RaOn_Community.domain.entity.InformationPost;
+import com.example.RaOn_Community.domain.entity.User;
+import com.example.RaOn_Community.domain.repository.InformationCommentRepository;
+import com.example.RaOn_Community.domain.repository.InformationRepository;
+import com.example.RaOn_Community.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

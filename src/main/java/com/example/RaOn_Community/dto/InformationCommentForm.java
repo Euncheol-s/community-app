@@ -1,5 +1,8 @@
 package com.example.RaOn_Community.dto;
 
+import com.example.RaOn_Community.domain.entity.InformationComment;
+import com.example.RaOn_Community.domain.entity.InformationPost;
+import com.example.RaOn_Community.domain.entity.User;
 import com.example.RaOn_Community.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Setter;

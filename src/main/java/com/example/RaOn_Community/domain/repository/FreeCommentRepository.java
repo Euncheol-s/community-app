@@ -1,7 +1,6 @@
-package com.example.RaOn_Community.repository;
+package com.example.RaOn_Community.domain.repository;
 
-import com.example.RaOn_Community.entity.Comment;
-import com.example.RaOn_Community.entity.FreeComment;
+import com.example.RaOn_Community.domain.entity.FreeComment;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;

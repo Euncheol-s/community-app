@@ -1,6 +1,6 @@
-package com.example.RaOn_Community.repository;
+package com.example.RaOn_Community.domain.repository;
 
-import com.example.RaOn_Community.entity.User;
+import com.example.RaOn_Community.domain.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
