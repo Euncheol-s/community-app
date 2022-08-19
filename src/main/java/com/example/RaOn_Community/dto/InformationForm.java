@@ -1,6 +1,6 @@
 package com.example.RaOn_Community.dto;
 
-import com.example.RaOn_Community.entity.InformationPost;
+import com.example.RaOn_Community.domain.entity.InformationPost;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +18,6 @@ public class InformationForm {
     private Date board_date;
     private Integer recommend;
     public InformationPost toEntity(){
-        return new InformationPost(id, title, author, content, board_date, recommend);
+        return new InformationPost(id, title, content, author, board_date, recommend);
     }
 }

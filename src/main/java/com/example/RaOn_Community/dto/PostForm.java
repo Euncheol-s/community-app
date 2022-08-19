@@ -1,13 +1,11 @@
 package com.example.RaOn_Community.dto;
 
-import com.example.RaOn_Community.entity.Comment;
-import com.example.RaOn_Community.entity.Post;
+import com.example.RaOn_Community.domain.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.List;
 
 @AllArgsConstructor
 @ToString

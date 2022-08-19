@@ -1,4 +1,4 @@
-package com.example.RaOn_Community.entity;
+package com.example.RaOn_Community.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "freecomment")
+@Table(name = "comment")
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Getter
-public class FreeComment {
+public class Comment {
     @Id
     private Integer id;
     @ManyToOne
@@ -27,8 +27,8 @@ public class FreeComment {
     @Column(nullable = false)
     private Date date;
     @ManyToOne
-    @JoinColumn(name = "free_id",
+    @JoinColumn(name = "post_id",
             referencedColumnName = "id",
             foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
-    private FreePost free_id;
+    private Post post_id;
 }

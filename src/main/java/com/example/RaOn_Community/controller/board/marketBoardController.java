@@ -1,11 +1,13 @@
 package com.example.RaOn_Community.controller.board;
 
+import com.example.RaOn_Community.domain.entity.Market;
+import com.example.RaOn_Community.domain.entity.MarketComment;
+import com.example.RaOn_Community.domain.entity.User;
 import com.example.RaOn_Community.dto.MarketCommentForm;
 import com.example.RaOn_Community.dto.MarketForm;
-import com.example.RaOn_Community.entity.*;
-import com.example.RaOn_Community.repository.MarketCommentRepository;
-import com.example.RaOn_Community.repository.MarketRepository;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.domain.repository.MarketCommentRepository;
+import com.example.RaOn_Community.domain.repository.MarketRepository;
+import com.example.RaOn_Community.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +31,7 @@ public class marketBoardController {
         if(market.size()>0)
             num_Id=market.get(market.size()-1).getId();
         else
-            commentNum_Id=0;
+            num_Id=0;
         return market;
     }
     @GetMapping("/{id}")
