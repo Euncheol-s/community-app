@@ -54,6 +54,7 @@ public class noticeBoardController {
     }
     @PostMapping("/insert")
     public void softwarePost(PostForm post) {
+        log.info(post.toString());
         post.setId(num_postId+1);
         post.setAuthor("관리자");
         Date now=new Date();

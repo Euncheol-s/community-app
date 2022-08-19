@@ -5,7 +5,6 @@ import com.example.RaOn_Community.domain.entity.FreePost;
 import com.example.RaOn_Community.domain.entity.User;
 import com.example.RaOn_Community.dto.FreeCommentForm;
 import com.example.RaOn_Community.dto.FreePostForm;
-import com.example.RaOn_Community.entity.*;
 import com.example.RaOn_Community.domain.repository.FreeCommentRepository;
 import com.example.RaOn_Community.domain.repository.FreePostRepository;
 import com.example.RaOn_Community.domain.repository.UserRepository;
