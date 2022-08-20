@@ -1,20 +1,18 @@
-package com.example.RaOn_Community.entity;
+package com.example.RaOn_Community.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "freepost")
+@Table(name="post")
 @AllArgsConstructor
-@NoArgsConstructor
-@Getter
 @ToString
-public class FreePost {
+@Getter
+@NoArgsConstructor
+public class Post {
     @Id
     private Integer id;
     @Column(length = 100, nullable = false)
