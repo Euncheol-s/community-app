@@ -11,6 +11,29 @@ function BoardWrite() {
   const [board, setBoard] = useState("");
   const history = useHistory();
 
+  useEffect(() => {
+    let boardType = ""
+    type.type === "1"
+      ? setBoard("freeboard")
+      : type.type === "2"
+      ? setBoard("information")
+      : setBoard("market");
+    type.type === "1"
+      ? boardType="freeboard"
+      : type.type === "2"
+      ? boardType="information"
+      : boardType="market";
+    axios
+      .get(`http://localhost:8080/api/${boardType}/${type.id}`)
+      .then((res) => {
+        setTitle(res.data.title);
+        setContents(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, []);
+
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -20,27 +43,20 @@ function BoardWrite() {
   const onChangeFiles = (event) => {
     setFiles(event.target.value);
   };
-  useEffect(() => {
-    type.id === "1"
-      ? setBoard("freeboard")
-      : type.id === "2"
-      ? setBoard("information")
-      : setBoard("market");
-  }, []);
 
   const onClick = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", contents);
     axios
-      .post(`http://localhost:8080/api/${board}/insert`, formData)
+      .post(`http://localhost:8080/api/${board}/${type.id}/edit`, formData)
       .then(() => {
-        history.push("/board/" + type.id);
+        history.push("/board/" + type.type);
         window.location.reload();
       })
       .catch((error) => {
         console.log(error);
-        history.push("/board/" + type.id);
+        history.push("/board/" + type.type);
       });
   };
 

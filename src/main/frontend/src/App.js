@@ -12,11 +12,19 @@ import NoticeWrite from "./routes/NoticeWrite";
 import Detail from "./routes/Detail";
 import BoardDetail from "./routes/BoardDetail"
 import CouncilInfo from "./routes/CouncilInfo";
+import NoticeEdit from "./routes/NoticeEdit";
+import BoardEdit from "./routes/BoardEdit";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/board/:type/edit/:id">
+          <BoardEdit />
+        </Route>
+        <Route path="/notice/edit/:id">
+          <NoticeEdit />
+        </Route>
         <Route path="/board/:type/detail/:id">
           <BoardDetail />
         </Route>

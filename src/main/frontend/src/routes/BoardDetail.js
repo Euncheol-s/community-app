@@ -36,7 +36,9 @@ function BoardDetail() {
   const userImage =
     "https://cdn.pixabay.com/photo/2015/11/06/11/43/businessman-1026415__340.jpg";
 
-  const onEditing = (event) => {};
+  const onEditing = (event) => {
+    window.location.pathname = `/board/${boardType}/edit/${number.id}`;
+  }
   const onDeleting = () => {
     axios
       .get(`http://localhost:8080/api/${board}/${number.id}/delete`)
