@@ -1,16 +1,26 @@
 import NavBar from "../components/NavBar";
-import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 
-function BoardWrite() {
-  const type = useParams();
+function NoticeWrite() {
+  const number = useParams();
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [files, setFiles] = useState([]);
-  const [board, setBoard] = useState("");
   const history = useHistory();
 
+
+  useEffect(() => {
+          axios.get(`http://localhost:8080/api/board/${number.id}`)
+          .then((res) => {
+            setTitle(res.data.title);
+            setContents(res.data.content);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+  }, [])
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -20,27 +30,21 @@ function BoardWrite() {
   const onChangeFiles = (event) => {
     setFiles(event.target.value);
   };
-  useEffect(() => {
-    type.id === "1"
-      ? setBoard("freeboard")
-      : type.id === "2"
-      ? setBoard("information")
-      : setBoard("market");
-  }, []);
 
   const onClick = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", contents);
+
     axios
-      .post(`http://localhost:8080/api/${board}/insert`, formData)
-      .then(() => {
-        history.push("/board/" + type.id);
-        window.location.reload();
+      .get(`http://localhost:8080/api/board/${number.id}/edit`, formData)
+      .then((res) => {
+        console.log(res);
+        history.push("/notice");
       })
       .catch((error) => {
         console.log(error);
-        history.push("/board/" + type.id);
+        history.push("/notice");
       });
   };
 
@@ -48,7 +52,7 @@ function BoardWrite() {
     <>
       <NavBar />
       <div className="container mt-5 card shadow-sm p-4">
-        <div className="mb-5 mt-4">
+        <div className="mb-5">
           <label htmlFor="title" className="form-label">
             <h4>제목</h4>
           </label>
@@ -99,4 +103,4 @@ function BoardWrite() {
   );
 }
 
-export default BoardWrite;
+export default NoticeWrite;

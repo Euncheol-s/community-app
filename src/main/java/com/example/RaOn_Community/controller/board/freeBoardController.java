@@ -57,13 +57,13 @@ public class freeBoardController {
         free.setRecommend(0);
         fr.save(free.toEntity());
     }
-    @GetMapping("/freecomment")
+    @GetMapping("/freeboardcomment")
     public List<FreeComment> freeAllComments(){
         List<FreeComment> commentEntity=fcr.findAll();
         return commentEntity;
     }
     //자유게시판의 전체 댓글 조회
-    @GetMapping("/{id}/freecomment")
+    @GetMapping("/{id}/freeboardcomment")
     public List<FreeComment> freeAllComment(@PathVariable Integer id){
         FreePost free=fr.findById(id).orElse(null);
         List<FreeComment> commentList=fcr.findAll();
@@ -75,7 +75,7 @@ public class freeBoardController {
         return result;
     }
     //자유게시판의 id번째 게시글의 댓글 조회
-    @PostMapping("/{id}/freecomment/insert")
+    @PostMapping("/{id}/freeboardcomment/insert")
     public void freeCommentinsert(FreeCommentForm comment, @PathVariable Integer id){
         List<FreeComment> commentEntity=fcr.findAll();
         if(commentEntity.size()>0)
@@ -93,13 +93,13 @@ public class freeBoardController {
         comment.setFree_id(post);
         fcr.save(comment.toEntity());
     }
-    @GetMapping("/freecomment/{id}")
+    @GetMapping("/freeboardcomment/{id}")
     public FreeComment freeComment(@PathVariable Integer id){
         FreeComment comment=fcr.findById(id).orElse(null);
         return comment;
     }
     //id번 댓글 한 개 조회
-    @GetMapping("/freecomment/{id}/delete")
+    @GetMapping("/freeboardcomment/{id}/delete")
     public void freeCommentDelete(@PathVariable Integer id){
         FreeComment comment=fcr.findById(id).orElse(null);
         if(comment!=null)
