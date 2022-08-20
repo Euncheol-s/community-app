@@ -18,6 +18,6 @@ public class MarketForm {
     private Date board_date;
     private Integer recommend;
     public Market toEntity(){
-        return new Market(id, title, author, content, board_date, recommend);
+        return new Market(id, title, content, author, board_date, recommend);
     }
 }
