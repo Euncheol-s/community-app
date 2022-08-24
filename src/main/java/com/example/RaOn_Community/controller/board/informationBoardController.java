@@ -46,6 +46,22 @@ public class informationBoardController {
         if(information!=null)
             ir.delete(information);
     }
+    @PostMapping("/{id}/edit")
+    public void informationBoardEdit(@PathVariable Integer id, InformationForm information){
+        information.setAuthor("홍길동");
+        information.setRecommend(0);
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        information.setBoard_date(dateTime);
+        InformationPost post=information.toEntity();
+        InformationPost target=ir.findById(id).orElse(null);
+        if(target!=null){
+            Integer targetId=target.getId();
+            if(targetId==id)
+                ir.save(post);
+        }
+    }
     @PostMapping("/insert")
     public void informationBoardPost(InformationForm inform){
         inform.setId(num_Id+1);

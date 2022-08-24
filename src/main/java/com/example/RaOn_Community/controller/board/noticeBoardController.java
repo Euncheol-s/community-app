@@ -41,9 +41,21 @@ public class noticeBoardController {
         Post post=pr.findById(id).orElse(null);
         return post;
     }
-    @GetMapping("/{id}/edit")
-    public void noticeBoardEdit(@PathVariable Integer id){
-        Post post=pr.findById(id).orElse(null);
+    @PostMapping("/{id}/edit")
+    public void noticeBoardEdit(@PathVariable Integer id, PostForm post){
+        post.setAuthor("홍길동");
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        post.setBoard_date(dateTime);
+        post.setRecommend(0);
+        Post entity=post.toEntity();
+        Post target=pr.findById(id).orElse(null);
+        if(target!=null) {
+            Integer targetId=target.getId();
+            if(targetId==id)
+                pr.save(entity);
+        }
     }
     @GetMapping("/{id}/delete")
     public void noticeBoardDelete(@PathVariable Integer id){

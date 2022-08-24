@@ -45,6 +45,22 @@ public class marketBoardController {
         if(marketPost!=null)
             mr.delete(marketPost);
     }
+    @PostMapping("/{id}/edit")
+    public void marketBoardEdit(@PathVariable Integer id, MarketForm market){
+        market.setAuthor("홍길동");
+        market.setRecommend(0);
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        market.setBoard_date(dateTime);
+        Market post=market.toEntity();
+        Market target=mr.findById(id).orElse(null);
+        if(target!=null){
+            Integer targetId=target.getId();
+            if(targetId==id)
+                mr.save(post);
+        }
+    }
     @PostMapping("/insert")
     public void marketBoardPost(MarketForm market){
         market.setId(num_Id+1);

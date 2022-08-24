@@ -46,6 +46,22 @@ public class freeBoardController {
         if(freePost!=null)
             fr.delete(freePost);
     }
+    @PostMapping("/{id}/edit")
+    public void freeBoardEdit(@PathVariable Integer id, FreePostForm free){
+        free.setAuthor("홍길동");
+        free.setRecommend(0);
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        free.setBoard_date(dateTime);
+        FreePost post=free.toEntity();
+        FreePost target=fr.findById(id).orElse(null);
+        if(target!=null){
+            Integer targetId=target.getId();
+            if(targetId==id)
+                fr.save(post);
+        }
+    }
     @PostMapping("/insert")
     public void freeBoardPost(FreePostForm free){
         free.setId(num_Id+1);
