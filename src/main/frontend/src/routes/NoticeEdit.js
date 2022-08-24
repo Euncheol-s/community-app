@@ -37,7 +37,7 @@ function NoticeWrite() {
     formData.append("content", contents);
 
     axios
-      .get(`http://localhost:8080/api/board/${number.id}/edit`, formData)
+      .post(`http://localhost:8080/api/board/${number.id}/edit`, formData)
       .then((res) => {
         console.log(res);
         history.push("/notice");

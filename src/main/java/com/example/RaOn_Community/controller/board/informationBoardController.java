@@ -2,12 +2,12 @@ package com.example.RaOn_Community.controller.board;
 
 import com.example.RaOn_Community.dto.InformationCommentForm;
 import com.example.RaOn_Community.dto.InformationForm;
-import com.example.RaOn_Community.entity.InformationComment;
-import com.example.RaOn_Community.entity.InformationPost;
-import com.example.RaOn_Community.entity.User;
-import com.example.RaOn_Community.repository.InformationCommentRepository;
-import com.example.RaOn_Community.repository.InformationRepository;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.domain.entity.InformationComment;
+import com.example.RaOn_Community.domain.entity.InformationPost;
+import com.example.RaOn_Community.domain.entity.User;
+import com.example.RaOn_Community.domain.repository.InformationCommentRepository;
+import com.example.RaOn_Community.domain.repository.InformationRepository;
+import com.example.RaOn_Community.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +45,22 @@ public class informationBoardController {
         InformationPost information=ir.findById(id).orElse(null);
         if(information!=null)
             ir.delete(information);
+    }
+    @PostMapping("/{id}/edit")
+    public void informationBoardEdit(@PathVariable Integer id, InformationForm information){
+        information.setAuthor("홍길동");
+        information.setRecommend(0);
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        information.setBoard_date(dateTime);
+        InformationPost post=information.toEntity();
+        InformationPost target=ir.findById(id).orElse(null);
+        if(target!=null){
+            Integer targetId=target.getId();
+            if(targetId==id)
+                ir.save(post);
+        }
     }
     @PostMapping("/insert")
     public void informationBoardPost(InformationForm inform){

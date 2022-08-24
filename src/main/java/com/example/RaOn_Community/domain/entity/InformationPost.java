@@ -1,4 +1,4 @@
-package com.example.RaOn_Community.entity;
+package com.example.RaOn_Community.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

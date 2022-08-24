@@ -1,11 +1,13 @@
 package com.example.RaOn_Community.controller.board;
 
+import com.example.RaOn_Community.domain.entity.Market;
+import com.example.RaOn_Community.domain.entity.MarketComment;
+import com.example.RaOn_Community.domain.entity.User;
 import com.example.RaOn_Community.dto.MarketCommentForm;
 import com.example.RaOn_Community.dto.MarketForm;
-import com.example.RaOn_Community.entity.*;
-import com.example.RaOn_Community.repository.MarketCommentRepository;
-import com.example.RaOn_Community.repository.MarketRepository;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.domain.repository.MarketCommentRepository;
+import com.example.RaOn_Community.domain.repository.MarketRepository;
+import com.example.RaOn_Community.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +44,22 @@ public class marketBoardController {
         Market marketPost=mr.findById(id).orElse(null);
         if(marketPost!=null)
             mr.delete(marketPost);
+    }
+    @PostMapping("/{id}/edit")
+    public void marketBoardEdit(@PathVariable Integer id, MarketForm market){
+        market.setAuthor("홍길동");
+        market.setRecommend(0);
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        market.setBoard_date(dateTime);
+        Market post=market.toEntity();
+        Market target=mr.findById(id).orElse(null);
+        if(target!=null){
+            Integer targetId=target.getId();
+            if(targetId==id)
+                mr.save(post);
+        }
     }
     @PostMapping("/insert")
     public void marketBoardPost(MarketForm market){

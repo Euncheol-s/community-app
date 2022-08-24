@@ -2,12 +2,12 @@ package com.example.RaOn_Community.controller.board;
 
 import com.example.RaOn_Community.dto.CommentForm;
 import com.example.RaOn_Community.dto.PostForm;
-import com.example.RaOn_Community.entity.Comment;
-import com.example.RaOn_Community.entity.Post;
-import com.example.RaOn_Community.entity.User;
-import com.example.RaOn_Community.repository.CommentRepository;
-import com.example.RaOn_Community.repository.PostRepository;
-import com.example.RaOn_Community.repository.UserRepository;
+import com.example.RaOn_Community.domain.entity.Comment;
+import com.example.RaOn_Community.domain.entity.Post;
+import com.example.RaOn_Community.domain.entity.User;
+import com.example.RaOn_Community.domain.repository.CommentRepository;
+import com.example.RaOn_Community.domain.repository.PostRepository;
+import com.example.RaOn_Community.domain.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,9 +41,21 @@ public class noticeBoardController {
         Post post=pr.findById(id).orElse(null);
         return post;
     }
-    @GetMapping("/{id}/edit")
-    public void noticeBoardEdit(@PathVariable Integer id){
-        Post post=pr.findById(id).orElse(null);
+    @PostMapping("/{id}/edit")
+    public void noticeBoardEdit(@PathVariable Integer id, PostForm post){
+        post.setAuthor("홍길동");
+        Date now=new Date();
+        long time=now.getTime();
+        java.sql.Date dateTime=new java.sql.Date(time);
+        post.setBoard_date(dateTime);
+        post.setRecommend(0);
+        Post entity=post.toEntity();
+        Post target=pr.findById(id).orElse(null);
+        if(target!=null) {
+            Integer targetId=target.getId();
+            if(targetId==id)
+                pr.save(entity);
+        }
     }
     @GetMapping("/{id}/delete")
     public void noticeBoardDelete(@PathVariable Integer id){
@@ -54,6 +66,7 @@ public class noticeBoardController {
     }
     @PostMapping("/insert")
     public void softwarePost(PostForm post) {
+        log.info(post.toString());
         post.setId(num_postId+1);
         post.setAuthor("관리자");
         Date now=new Date();
