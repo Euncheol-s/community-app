@@ -53,7 +53,7 @@ function BoardComment() {
                 }}
               />
               <div className="container d-flex flex-column">
-                <b>{nickname.nickname}</b>
+                <b>{nickname}</b>
                 <p>{com}</p>
                 <span>{moment(date).format("YYYY.MM.DD HH:mm:ss")}</span>
               </div>
