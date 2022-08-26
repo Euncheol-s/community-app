@@ -12,4 +12,3 @@ React를 기반으로 Spring boot와 Flask를 이용하여 간단한 커뮤니�
 > H2 Database   
 > Spring Data JPA
 * React.js
-* Flask(`Python`)
