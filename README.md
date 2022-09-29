@@ -20,3 +20,49 @@ React를 기반으로 Spring boot를 이용하여 간단한 커뮤니티 만들�
 * MySQL Server
 > `8.0.30`   
 ## 실행 요약
+&nbsp;IntelliJ를 통해 Spring boot와 react를 실행시켜주어야 실행이 가능하다.   
+우선 콘솔 상에서 react 작업 경로로 이동 후
+```
+cd src/main/frontend
+npm start
+```
+입력을 입력해준다. react가 실행될 때까지 기다린다.   
+MySQL Server와 Spring boot를 실행시켜주어 프로젝트를 실행시킨다.
+![example1](./example_Img/example01.png)
+&nbsp;프로젝트 시작 후 실행되는 메인페이지이다. 게시판 박스 안 게시글을 클릭하면 해당 게시글로 넘어가게 route 지정을 해주었다.
+![example2](./example_Img/example02.png)
+```java
+  ...
+@RestController
+@RequestMapping("/api/freeboard")
+public class freeBoardController {
+    private Integer num_Id=0;
+    private Integer commentNum_Id=0;
+    @Autowired
+    private FreePostRepository fr;
+    @GetMapping("")
+    public List<FreePost> freeBoard(){
+        List<FreePost> free=fr.findAll();
+        if(free.size()>0)
+            num_Id=free.get(free.size()-1).getId();
+        else
+            num_Id=0;
+        return free;
+    }
+    ...
+```
+&nbsp;자유게시판은 /api/freeboard로 데이터를 주고 받아 repository를 통해 react에 쏴주는 형식이다.
+```javascript
+    ...
+    useEffect(() => {
+      type.id === "1"
+        ? axios.get("http://localhost:8080/api/freeboard").then((response) => {
+            setPosts(response.data);
+          })
+    ...
+```
+&nbsp;react는 Spring boot와 Database에서 데이터를 주고 받는 repository링크를 받아와 화면 상에 보여준다. 
+다른 게시판도 마찬가지로 같은 형식으로 구성되어 있다.
+![example3](./example_Img/example05.png)
+![example4](./example_Img/example04.png)
+&nbsp;댓글 추가 기능도 마찬가지로 구현되어 있고, 수정 또한 구현되어있다.
